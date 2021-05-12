@@ -1,0 +1,3432 @@
+{
+    "cmsType": "sanity",
+    "staticDir": "static",
+    "pagesDir": "content",
+    "dataDir": "data",
+    "uploadDir": "images",
+    "pageContentFieldKey": "content",
+    "objectTypeKey": "type",
+    "dataset": "production",
+    "models": [
+        {
+            "type": "config",
+            "label": "Site Configuration",
+            "fields": [
+                {
+                    "type": "string",
+                    "name": "title",
+                    "label": "Title",
+                    "description": "Site title",
+                    "required": true
+                },
+                {
+                    "type": "string",
+                    "name": "baseURL",
+                    "label": "Base URL",
+                    "description": "Hostname (and path) to the root",
+                    "hidden": true
+                },
+                {
+                    "type": "object",
+                    "name": "params",
+                    "label": "Params",
+                    "description": "Site parameters",
+                    "required": true,
+                    "fields": [
+                        {
+                            "type": "string",
+                            "name": "domain",
+                            "label": "Domain",
+                            "description": "The domain of your site, including the protocol, e.g. https://mysite.com"
+                        },
+                        {
+                            "type": "image",
+                            "name": "favicon",
+                            "label": "Favicon",
+                            "description": "A square icon that represents your website"
+                        },
+                        {
+                            "type": "enum",
+                            "name": "color_scheme",
+                            "label": "Color scheme",
+                            "description": "The color scheme used for the site",
+                            "options": [
+                                "light",
+                                "dark"
+                            ],
+                            "default": "light",
+                            "required": true
+                        },
+                        {
+                            "type": "enum",
+                            "name": "accent_color",
+                            "label": "Accent color",
+                            "description": "The accent color of the site",
+                            "options": [
+                                "pink",
+                                "green",
+                                "blue",
+                                "violet",
+                                "yellow"
+                            ],
+                            "default": "pink",
+                            "required": true
+                        },
+                        {
+                            "type": "enum",
+                            "name": "base_font",
+                            "label": "Font",
+                            "options": [
+                                "fraunces",
+                                "karla",
+                                "system-sans"
+                            ],
+                            "default": "fraunces",
+                            "required": true
+                        },
+                        {
+                            "type": "model",
+                            "name": "header",
+                            "label": "Header Configuration",
+                            "models": [
+                                "header"
+                            ]
+                        },
+                        {
+                            "type": "model",
+                            "name": "footer",
+                            "label": "Footer Configuration",
+                            "models": [
+                                "footer"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "string",
+                    "name": "stackbit_file_path",
+                    "label": "Config File Path",
+                    "description": "The file path of the configuration file",
+                    "const": "config.yaml",
+                    "hidden": true
+                },
+                {
+                    "type": "string",
+                    "name": "stackbit_model_type",
+                    "label": "Stackbit Model Type",
+                    "description": "Stackbit model type",
+                    "const": "config",
+                    "hidden": true
+                }
+            ],
+            "name": "config",
+            "hideContent": true
+        },
+        {
+            "type": "object",
+            "label": "Header Configuration",
+            "labelField": "title",
+            "fields": [
+                {
+                    "type": "string",
+                    "name": "title",
+                    "label": "Header title",
+                    "description": "The title displayed in the header if no logo image added"
+                },
+                {
+                    "type": "image",
+                    "name": "logo",
+                    "label": "Logo",
+                    "description": "The logo image displayed in the header"
+                },
+                {
+                    "type": "string",
+                    "name": "logo_alt",
+                    "label": "Logo alt text",
+                    "description": "The alt text of the logo image"
+                },
+                {
+                    "type": "boolean",
+                    "name": "has_nav",
+                    "label": "Enable navigation menu",
+                    "description": "Display the navigation menu bar in the header",
+                    "default": true
+                },
+                {
+                    "type": "list",
+                    "name": "nav_links",
+                    "label": "Navigation links",
+                    "description": "A list of navigation links",
+                    "items": {
+                        "type": "model",
+                        "models": [
+                            "action"
+                        ]
+                    }
+                },
+                {
+                    "type": "string",
+                    "name": "type",
+                    "label": "Object Type",
+                    "description": "The type of the object",
+                    "const": "header",
+                    "hidden": true
+                },
+                {
+                    "type": "string",
+                    "name": "stackbit_model_type",
+                    "label": "Stackbit Model Type",
+                    "description": "Stackbit model type",
+                    "const": "object",
+                    "hidden": true
+                }
+            ],
+            "name": "header",
+            "hideContent": true
+        },
+        {
+            "type": "object",
+            "label": "Footer Configuration",
+            "labelField": "content",
+            "fields": [
+                {
+                    "type": "string",
+                    "name": "content",
+                    "label": "Footer content",
+                    "description": "The copyright text displayed in the footer"
+                },
+                {
+                    "type": "list",
+                    "name": "links",
+                    "label": "Links",
+                    "description": "A list of links displayed in the footer",
+                    "items": {
+                        "type": "model",
+                        "models": [
+                            "action"
+                        ]
+                    }
+                },
+                {
+                    "type": "boolean",
+                    "name": "has_social",
+                    "label": "Enable social links",
+                    "description": "Display social links in the footer",
+                    "default": true
+                },
+                {
+                    "type": "list",
+                    "name": "social_links",
+                    "label": "Social links",
+                    "description": "A list of social links in the footer",
+                    "items": {
+                        "type": "model",
+                        "models": [
+                            "action"
+                        ]
+                    }
+                },
+                {
+                    "type": "string",
+                    "name": "type",
+                    "label": "Object Type",
+                    "description": "The type of the object",
+                    "const": "footer",
+                    "hidden": true
+                },
+                {
+                    "type": "string",
+                    "name": "stackbit_model_type",
+                    "label": "Stackbit Model Type",
+                    "description": "Stackbit model type",
+                    "const": "object",
+                    "hidden": true
+                }
+            ],
+            "name": "footer",
+            "hideContent": true
+        },
+        {
+            "type": "page",
+            "label": "Advanced Page",
+            "layout": "advanced",
+            "hideContent": true,
+            "fields": [
+                {
+                    "type": "string",
+                    "name": "title",
+                    "label": "Title",
+                    "description": "The title of the page",
+                    "required": true
+                },
+                {
+                    "type": "boolean",
+                    "name": "hide_title",
+                    "label": "Hide page title",
+                    "default": true
+                },
+                {
+                    "type": "list",
+                    "name": "sections",
+                    "label": "Sections",
+                    "description": "Page sections",
+                    "items": {
+                        "type": "model",
+                        "models": [
+                            "hero_section",
+                            "content_section",
+                            "cta_section",
+                            "grid_section",
+                            "portfolio_section",
+                            "posts_section",
+                            "testimonials_section",
+                            "form_section"
+                        ]
+                    }
+                },
+                {
+                    "type": "model",
+                    "name": "seo",
+                    "models": [
+                        "stackbit_page_meta"
+                    ],
+                    "label": "Seo"
+                },
+                {
+                    "type": "string",
+                    "name": "layout",
+                    "label": "Layout",
+                    "const": "advanced",
+                    "hidden": true
+                },
+                {
+                    "type": "string",
+                    "name": "stackbit_url_path",
+                    "label": "URL Path",
+                    "description": "The URL path of this page relative to site root. For example, the site root page would be \"/\", and post page would be \"posts/new-post/\"",
+                    "required": true
+                },
+                {
+                    "type": "string",
+                    "name": "stackbit_model_type",
+                    "label": "Stackbit Model Type",
+                    "description": "Stackbit model type",
+                    "const": "page",
+                    "hidden": true
+                }
+            ],
+            "name": "advanced"
+        },
+        {
+            "type": "page",
+            "urlPath": "/blog",
+            "label": "Blog",
+            "layout": "blog",
+            "file": "blog/_index.md",
+            "hideContent": true,
+            "singleInstance": true,
+            "fields": [
+                {
+                    "type": "string",
+                    "name": "title",
+                    "label": "Title",
+                    "description": "The title of the page",
+                    "required": true
+                },
+                {
+                    "type": "string",
+                    "name": "subtitle",
+                    "label": "Subtitle",
+                    "description": "The text shown just below the page title"
+                },
+                {
+                    "type": "boolean",
+                    "name": "hide_title",
+                    "label": "Hide page title and subtitle",
+                    "default": false
+                },
+                {
+                    "type": "enum",
+                    "name": "col_number",
+                    "label": "Columns",
+                    "description": "The number of columns in the post grid",
+                    "options": [
+                        "two",
+                        "three"
+                    ],
+                    "default": "three",
+                    "required": true
+                },
+                {
+                    "type": "model",
+                    "name": "seo",
+                    "models": [
+                        "stackbit_page_meta"
+                    ],
+                    "label": "Seo"
+                },
+                {
+                    "type": "string",
+                    "name": "layout",
+                    "label": "Layout",
+                    "const": "blog",
+                    "hidden": true
+                },
+                {
+                    "type": "string",
+                    "name": "stackbit_url_path",
+                    "label": "URL Path",
+                    "description": "The URL path of this page relative to site root. For example, the site root page would be \"/\", and post page would be \"posts/new-post/\"",
+                    "required": true
+                },
+                {
+                    "type": "string",
+                    "name": "stackbit_model_type",
+                    "label": "Stackbit Model Type",
+                    "description": "Stackbit model type",
+                    "const": "page",
+                    "hidden": true
+                }
+            ],
+            "name": "blog"
+        },
+        {
+            "type": "page",
+            "urlPath": "/portfolio",
+            "label": "Portfolio",
+            "layout": "portfolio",
+            "file": "portfolio/_index.md",
+            "hideContent": true,
+            "singleInstance": true,
+            "fields": [
+                {
+                    "type": "string",
+                    "name": "title",
+                    "label": "Title",
+                    "description": "The title of the page",
+                    "required": true
+                },
+                {
+                    "type": "string",
+                    "name": "subtitle",
+                    "label": "Subtitle",
+                    "description": "The text shown just below the page title"
+                },
+                {
+                    "type": "boolean",
+                    "name": "hide_title",
+                    "label": "Hide page title and subtitle",
+                    "default": false
+                },
+                {
+                    "type": "enum",
+                    "name": "layout_style",
+                    "label": "Layout style",
+                    "description": "The style of the portfolio layout",
+                    "options": [
+                        "mosaic",
+                        "tiles"
+                    ],
+                    "default": "mosaic"
+                },
+                {
+                    "type": "model",
+                    "name": "seo",
+                    "models": [
+                        "stackbit_page_meta"
+                    ],
+                    "label": "Seo"
+                },
+                {
+                    "type": "string",
+                    "name": "layout",
+                    "label": "Layout",
+                    "const": "portfolio",
+                    "hidden": true
+                },
+                {
+                    "type": "string",
+                    "name": "stackbit_url_path",
+                    "label": "URL Path",
+                    "description": "The URL path of this page relative to site root. For example, the site root page would be \"/\", and post page would be \"posts/new-post/\"",
+                    "required": true
+                },
+                {
+                    "type": "string",
+                    "name": "stackbit_model_type",
+                    "label": "Stackbit Model Type",
+                    "description": "Stackbit model type",
+                    "const": "page",
+                    "hidden": true
+                }
+            ],
+            "name": "portfolio"
+        },
+        {
+            "type": "page",
+            "label": "Page",
+            "layout": "page",
+            "exclude": [
+                "blog/**",
+                "portfolio/**"
+            ],
+            "fields": [
+                {
+                    "type": "string",
+                    "name": "title",
+                    "label": "Title",
+                    "description": "The title of the page",
+                    "required": true
+                },
+                {
+                    "type": "string",
+                    "name": "subtitle",
+                    "label": "Subtitle",
+                    "description": "The text shown just below the page title"
+                },
+                {
+                    "type": "image",
+                    "name": "image",
+                    "label": "Image",
+                    "description": "The image shown below the page title and subtitle"
+                },
+                {
+                    "type": "string",
+                    "name": "image_alt",
+                    "label": "Image alt text",
+                    "description": "The alt text of the image"
+                },
+                {
+                    "type": "model",
+                    "name": "seo",
+                    "models": [
+                        "stackbit_page_meta"
+                    ],
+                    "label": "Seo"
+                },
+                {
+                    "type": "string",
+                    "name": "layout",
+                    "label": "Layout",
+                    "const": "page",
+                    "hidden": true
+                },
+                {
+                    "type": "string",
+                    "name": "stackbit_url_path",
+                    "label": "URL Path",
+                    "description": "The URL path of this page relative to site root. For example, the site root page would be \"/\", and post page would be \"posts/new-post/\"",
+                    "required": true
+                },
+                {
+                    "type": "markdown",
+                    "name": "content",
+                    "label": "Content",
+                    "description": "Page content"
+                },
+                {
+                    "type": "string",
+                    "name": "stackbit_model_type",
+                    "label": "Stackbit Model Type",
+                    "description": "Stackbit model type",
+                    "const": "page",
+                    "hidden": true
+                }
+            ],
+            "name": "page"
+        },
+        {
+            "type": "page",
+            "urlPath": "/blog/{slug}",
+            "label": "Post",
+            "layout": "post",
+            "folder": "blog",
+            "fields": [
+                {
+                    "type": "string",
+                    "name": "title",
+                    "label": "Title",
+                    "description": "The title of the post",
+                    "required": true
+                },
+                {
+                    "type": "string",
+                    "name": "subtitle",
+                    "label": "Subtitle",
+                    "description": "The text shown just below the post title"
+                },
+                {
+                    "type": "date",
+                    "name": "date",
+                    "label": "Date",
+                    "required": true
+                },
+                {
+                    "type": "image",
+                    "name": "thumb_image",
+                    "label": "Thumbnail image",
+                    "description": "The image shown in the post grid"
+                },
+                {
+                    "type": "string",
+                    "name": "thumb_image_alt",
+                    "label": "Thumbnail image alt text",
+                    "description": "The alt text of the thumbnail image"
+                },
+                {
+                    "type": "image",
+                    "name": "image",
+                    "label": "Image",
+                    "description": "The image shown in the single post"
+                },
+                {
+                    "type": "string",
+                    "name": "image_alt",
+                    "label": "Image alt text",
+                    "description": "The alt text of the single post image"
+                },
+                {
+                    "type": "string",
+                    "name": "excerpt",
+                    "label": "Excerpt",
+                    "description": "The excerpt of the post displayed in the post grid"
+                },
+                {
+                    "type": "model",
+                    "name": "seo",
+                    "models": [
+                        "stackbit_page_meta"
+                    ],
+                    "label": "Seo"
+                },
+                {
+                    "type": "string",
+                    "name": "layout",
+                    "label": "Layout",
+                    "const": "post",
+                    "hidden": true
+                },
+                {
+                    "type": "string",
+                    "name": "stackbit_url_path",
+                    "label": "URL Path",
+                    "description": "The URL path of this page relative to site root. For example, the site root page would be \"/\", and post page would be \"posts/new-post/\"",
+                    "required": true
+                },
+                {
+                    "type": "markdown",
+                    "name": "content",
+                    "label": "Content",
+                    "description": "Page content"
+                },
+                {
+                    "type": "string",
+                    "name": "stackbit_model_type",
+                    "label": "Stackbit Model Type",
+                    "description": "Stackbit model type",
+                    "const": "page",
+                    "hidden": true
+                }
+            ],
+            "name": "post"
+        },
+        {
+            "type": "page",
+            "urlPath": "/portfolio/{slug}",
+            "label": "Project",
+            "layout": "project",
+            "folder": "portfolio",
+            "hideContent": true,
+            "fields": [
+                {
+                    "type": "string",
+                    "name": "title",
+                    "label": "Title",
+                    "description": "The title of the project",
+                    "required": true
+                },
+                {
+                    "type": "string",
+                    "name": "subtitle",
+                    "label": "Subtitle",
+                    "description": "The text shown just below the project title"
+                },
+                {
+                    "type": "date",
+                    "name": "date",
+                    "label": "Date",
+                    "required": true
+                },
+                {
+                    "type": "image",
+                    "name": "thumb_image",
+                    "label": "Thumbnail image",
+                    "description": "The image shown in the portfolio grid"
+                },
+                {
+                    "type": "string",
+                    "name": "thumb_image_alt",
+                    "label": "Thumbnail image alt text",
+                    "description": "The alt text of the thumbnail image"
+                },
+                {
+                    "type": "list",
+                    "name": "sections",
+                    "label": "Sections",
+                    "description": "Project sections",
+                    "items": {
+                        "type": "model",
+                        "models": [
+                            "image_section",
+                            "text_section"
+                        ]
+                    }
+                },
+                {
+                    "type": "model",
+                    "name": "seo",
+                    "models": [
+                        "stackbit_page_meta"
+                    ],
+                    "label": "Seo"
+                },
+                {
+                    "type": "string",
+                    "name": "layout",
+                    "label": "Layout",
+                    "const": "project",
+                    "hidden": true
+                },
+                {
+                    "type": "string",
+                    "name": "stackbit_url_path",
+                    "label": "URL Path",
+                    "description": "The URL path of this page relative to site root. For example, the site root page would be \"/\", and post page would be \"posts/new-post/\"",
+                    "required": true
+                },
+                {
+                    "type": "string",
+                    "name": "stackbit_model_type",
+                    "label": "Stackbit Model Type",
+                    "description": "Stackbit model type",
+                    "const": "page",
+                    "hidden": true
+                }
+            ],
+            "name": "project"
+        },
+        {
+            "type": "object",
+            "label": "Hero Section",
+            "fields": [
+                {
+                    "type": "string",
+                    "name": "section_id",
+                    "label": "ID",
+                    "description": "A unique identifier of the section, must not contain whitespace"
+                },
+                {
+                    "type": "string",
+                    "name": "title",
+                    "label": "Title",
+                    "description": "The title of the section"
+                },
+                {
+                    "type": "markdown",
+                    "name": "content",
+                    "label": "Content",
+                    "description": "The text content of the section"
+                },
+                {
+                    "type": "list",
+                    "name": "actions",
+                    "label": "Action buttons",
+                    "items": {
+                        "type": "model",
+                        "models": [
+                            "action"
+                        ]
+                    }
+                },
+                {
+                    "type": "string",
+                    "name": "type",
+                    "label": "Object Type",
+                    "description": "The type of the object",
+                    "const": "hero_section",
+                    "hidden": true
+                },
+                {
+                    "type": "string",
+                    "name": "stackbit_model_type",
+                    "label": "Stackbit Model Type",
+                    "description": "Stackbit model type",
+                    "const": "object",
+                    "hidden": true
+                }
+            ],
+            "name": "hero_section",
+            "labelField": "title",
+            "hideContent": true
+        },
+        {
+            "type": "object",
+            "label": "Content Section",
+            "fields": [
+                {
+                    "type": "string",
+                    "name": "section_id",
+                    "label": "ID",
+                    "description": "A unique identifier of the section, must not contain whitespace"
+                },
+                {
+                    "type": "string",
+                    "name": "title",
+                    "label": "Title",
+                    "description": "The title of the section"
+                },
+                {
+                    "type": "string",
+                    "name": "subtitle",
+                    "label": "Subtitle",
+                    "description": "The subtitle of the section"
+                },
+                {
+                    "type": "image",
+                    "name": "image",
+                    "label": "Image",
+                    "description": "The image of the section"
+                },
+                {
+                    "type": "string",
+                    "name": "image_alt",
+                    "label": "Image alt text",
+                    "description": "The alt text of the section image"
+                },
+                {
+                    "type": "markdown",
+                    "name": "content",
+                    "label": "Content",
+                    "description": "The text content of the section"
+                },
+                {
+                    "type": "string",
+                    "name": "type",
+                    "label": "Object Type",
+                    "description": "The type of the object",
+                    "const": "content_section",
+                    "hidden": true
+                },
+                {
+                    "type": "string",
+                    "name": "stackbit_model_type",
+                    "label": "Stackbit Model Type",
+                    "description": "Stackbit model type",
+                    "const": "object",
+                    "hidden": true
+                }
+            ],
+            "name": "content_section",
+            "labelField": "title",
+            "hideContent": true
+        },
+        {
+            "type": "object",
+            "label": "CTA Section",
+            "fields": [
+                {
+                    "type": "string",
+                    "name": "section_id",
+                    "label": "ID",
+                    "description": "A unique identifier of the section, must not contain whitespace"
+                },
+                {
+                    "type": "string",
+                    "name": "title",
+                    "label": "Title",
+                    "description": "The title of the section"
+                },
+                {
+                    "type": "markdown",
+                    "name": "content",
+                    "label": "Content",
+                    "description": "The text content of the section"
+                },
+                {
+                    "type": "list",
+                    "name": "actions",
+                    "label": "Action buttons",
+                    "items": {
+                        "type": "model",
+                        "models": [
+                            "action"
+                        ]
+                    }
+                },
+                {
+                    "type": "image",
+                    "name": "image",
+                    "label": "Image",
+                    "description": "The image of the section"
+                },
+                {
+                    "type": "string",
+                    "name": "image_alt",
+                    "label": "Image alt text",
+                    "description": "The alt text of the section image"
+                },
+                {
+                    "type": "enum",
+                    "name": "bg_color",
+                    "label": "Background color",
+                    "description": "The background color of the section",
+                    "options": [
+                        "none",
+                        "light"
+                    ],
+                    "default": "none",
+                    "required": true
+                },
+                {
+                    "type": "string",
+                    "name": "type",
+                    "label": "Object Type",
+                    "description": "The type of the object",
+                    "const": "cta_section",
+                    "hidden": true
+                },
+                {
+                    "type": "string",
+                    "name": "stackbit_model_type",
+                    "label": "Stackbit Model Type",
+                    "description": "Stackbit model type",
+                    "const": "object",
+                    "hidden": true
+                }
+            ],
+            "name": "cta_section",
+            "labelField": "title",
+            "hideContent": true
+        },
+        {
+            "type": "object",
+            "label": "Grid Section",
+            "fields": [
+                {
+                    "type": "string",
+                    "name": "section_id",
+                    "label": "ID",
+                    "description": "A unique identifier of the section, must not contain whitespace"
+                },
+                {
+                    "type": "string",
+                    "name": "title",
+                    "label": "Title",
+                    "description": "The title of the section"
+                },
+                {
+                    "type": "string",
+                    "name": "subtitle",
+                    "label": "Subtitle",
+                    "description": "The subtitle of the section"
+                },
+                {
+                    "type": "enum",
+                    "name": "col_number",
+                    "label": "Columns",
+                    "description": "The number of columns in the grid",
+                    "options": [
+                        "two",
+                        "three"
+                    ],
+                    "default": "three",
+                    "required": true
+                },
+                {
+                    "type": "list",
+                    "name": "grid_items",
+                    "label": "Grid items",
+                    "items": {
+                        "type": "model",
+                        "models": [
+                            "grid_item"
+                        ]
+                    }
+                },
+                {
+                    "type": "string",
+                    "name": "type",
+                    "label": "Object Type",
+                    "description": "The type of the object",
+                    "const": "grid_section",
+                    "hidden": true
+                },
+                {
+                    "type": "string",
+                    "name": "stackbit_model_type",
+                    "label": "Stackbit Model Type",
+                    "description": "Stackbit model type",
+                    "const": "object",
+                    "hidden": true
+                }
+            ],
+            "name": "grid_section",
+            "labelField": "title",
+            "hideContent": true
+        },
+        {
+            "type": "object",
+            "label": "Grid item",
+            "labelField": "title",
+            "fields": [
+                {
+                    "type": "string",
+                    "name": "title",
+                    "label": "Title",
+                    "description": "The title of the grid item"
+                },
+                {
+                    "type": "string",
+                    "name": "subtitle",
+                    "label": "Subtitle",
+                    "description": "The subtitle of the grid item"
+                },
+                {
+                    "type": "image",
+                    "name": "image",
+                    "label": "Image",
+                    "description": "The image of the grid item"
+                },
+                {
+                    "type": "string",
+                    "name": "image_alt",
+                    "label": "Image alt text",
+                    "description": "The alt text of the grid image"
+                },
+                {
+                    "type": "markdown",
+                    "name": "content",
+                    "label": "Content",
+                    "description": "The text content of the grid item"
+                },
+                {
+                    "type": "list",
+                    "name": "actions",
+                    "label": "Action buttons",
+                    "items": {
+                        "type": "model",
+                        "models": [
+                            "action"
+                        ]
+                    }
+                },
+                {
+                    "type": "string",
+                    "name": "type",
+                    "label": "Object Type",
+                    "description": "The type of the object",
+                    "const": "grid_item",
+                    "hidden": true
+                },
+                {
+                    "type": "string",
+                    "name": "stackbit_model_type",
+                    "label": "Stackbit Model Type",
+                    "description": "Stackbit model type",
+                    "const": "object",
+                    "hidden": true
+                }
+            ],
+            "name": "grid_item",
+            "hideContent": true
+        },
+        {
+            "type": "object",
+            "label": "Portfolio Section",
+            "fields": [
+                {
+                    "type": "string",
+                    "name": "section_id",
+                    "label": "ID",
+                    "description": "A unique identifier of the section, must not contain whitespace"
+                },
+                {
+                    "type": "string",
+                    "name": "title",
+                    "label": "Title",
+                    "description": "The title of the section"
+                },
+                {
+                    "type": "string",
+                    "name": "subtitle",
+                    "label": "Subtitle",
+                    "description": "The subtitle of the section"
+                },
+                {
+                    "type": "enum",
+                    "name": "layout_style",
+                    "label": "Layout Style",
+                    "description": "The layout style of the projects section",
+                    "options": [
+                        "mosaic",
+                        "tiles"
+                    ],
+                    "default": "mosaic",
+                    "required": true
+                },
+                {
+                    "type": "number",
+                    "name": "projects_number",
+                    "label": "Number of projects to display",
+                    "required": true
+                },
+                {
+                    "type": "string",
+                    "name": "view_all_label",
+                    "label": "All projects button label",
+                    "description": "The text displayed inside the button"
+                },
+                {
+                    "type": "string",
+                    "name": "view_all_url",
+                    "label": "All projects button URL",
+                    "default": "#"
+                },
+                {
+                    "type": "string",
+                    "name": "type",
+                    "label": "Object Type",
+                    "description": "The type of the object",
+                    "const": "portfolio_section",
+                    "hidden": true
+                },
+                {
+                    "type": "string",
+                    "name": "stackbit_model_type",
+                    "label": "Stackbit Model Type",
+                    "description": "Stackbit model type",
+                    "const": "object",
+                    "hidden": true
+                }
+            ],
+            "name": "portfolio_section",
+            "labelField": "title",
+            "hideContent": true
+        },
+        {
+            "type": "object",
+            "label": "Posts Section",
+            "fields": [
+                {
+                    "type": "string",
+                    "name": "section_id",
+                    "label": "ID",
+                    "description": "A unique identifier of the section, must not contain whitespace"
+                },
+                {
+                    "type": "string",
+                    "name": "title",
+                    "label": "Title",
+                    "description": "The title of the section"
+                },
+                {
+                    "type": "string",
+                    "name": "subtitle",
+                    "label": "Subtitle",
+                    "description": "The subtitle of the section"
+                },
+                {
+                    "type": "number",
+                    "name": "posts_number",
+                    "label": "The number of posts to display",
+                    "required": true,
+                    "default": 3
+                },
+                {
+                    "type": "enum",
+                    "name": "col_number",
+                    "label": "Columns",
+                    "description": "The number of columns in the post grid",
+                    "options": [
+                        "two",
+                        "three"
+                    ],
+                    "default": "three",
+                    "required": true
+                },
+                {
+                    "type": "list",
+                    "name": "actions",
+                    "label": "Action buttons",
+                    "items": {
+                        "type": "model",
+                        "models": [
+                            "action"
+                        ]
+                    }
+                },
+                {
+                    "type": "string",
+                    "name": "type",
+                    "label": "Object Type",
+                    "description": "The type of the object",
+                    "const": "posts_section",
+                    "hidden": true
+                },
+                {
+                    "type": "string",
+                    "name": "stackbit_model_type",
+                    "label": "Stackbit Model Type",
+                    "description": "Stackbit model type",
+                    "const": "object",
+                    "hidden": true
+                }
+            ],
+            "name": "posts_section",
+            "labelField": "title",
+            "hideContent": true
+        },
+        {
+            "type": "object",
+            "label": "Testimonials Section",
+            "fields": [
+                {
+                    "type": "string",
+                    "name": "section_id",
+                    "label": "ID",
+                    "description": "A unique identifier of the section, must not contain whitespace"
+                },
+                {
+                    "type": "string",
+                    "name": "title",
+                    "label": "Title",
+                    "description": "The title of the section"
+                },
+                {
+                    "type": "string",
+                    "name": "subtitle",
+                    "label": "Subtitle",
+                    "description": "The subtitle of the section"
+                },
+                {
+                    "type": "list",
+                    "name": "testimonials",
+                    "label": "Testimonials",
+                    "items": {
+                        "type": "model",
+                        "models": [
+                            "testimonial"
+                        ]
+                    }
+                },
+                {
+                    "type": "string",
+                    "name": "type",
+                    "label": "Object Type",
+                    "description": "The type of the object",
+                    "const": "testimonials_section",
+                    "hidden": true
+                },
+                {
+                    "type": "string",
+                    "name": "stackbit_model_type",
+                    "label": "Stackbit Model Type",
+                    "description": "Stackbit model type",
+                    "const": "object",
+                    "hidden": true
+                }
+            ],
+            "name": "testimonials_section",
+            "labelField": "title",
+            "hideContent": true
+        },
+        {
+            "type": "object",
+            "label": "Testimonial",
+            "labelField": "author",
+            "fields": [
+                {
+                    "type": "string",
+                    "name": "author",
+                    "label": "Author",
+                    "description": "The author of the testimonial",
+                    "required": true
+                },
+                {
+                    "type": "string",
+                    "name": "position",
+                    "label": "Author position",
+                    "description": "The position of the testimonial author",
+                    "required": true
+                },
+                {
+                    "type": "image",
+                    "name": "avatar",
+                    "label": "Author image",
+                    "description": "The image of the testimonial author"
+                },
+                {
+                    "type": "string",
+                    "name": "avatar_alt",
+                    "label": "Author image alt text",
+                    "description": "The alt text of the testimonial author image"
+                },
+                {
+                    "type": "string",
+                    "name": "content",
+                    "label": "Content",
+                    "description": "The text content of the testimonial",
+                    "required": true
+                },
+                {
+                    "type": "string",
+                    "name": "type",
+                    "label": "Object Type",
+                    "description": "The type of the object",
+                    "const": "testimonial",
+                    "hidden": true
+                },
+                {
+                    "type": "string",
+                    "name": "stackbit_model_type",
+                    "label": "Stackbit Model Type",
+                    "description": "Stackbit model type",
+                    "const": "object",
+                    "hidden": true
+                }
+            ],
+            "name": "testimonial",
+            "hideContent": true
+        },
+        {
+            "type": "object",
+            "label": "Form Section",
+            "fields": [
+                {
+                    "type": "string",
+                    "name": "section_id",
+                    "label": "ID",
+                    "description": "A unique identifier of the section, must not contain whitespace"
+                },
+                {
+                    "type": "string",
+                    "name": "title",
+                    "label": "Title",
+                    "description": "The title of the section"
+                },
+                {
+                    "type": "string",
+                    "name": "subtitle",
+                    "label": "Subtitle",
+                    "description": "The subtitle of the section"
+                },
+                {
+                    "type": "markdown",
+                    "name": "content",
+                    "label": "Content",
+                    "description": "The text content of the section"
+                },
+                {
+                    "type": "string",
+                    "name": "form_id",
+                    "label": "Form ID",
+                    "description": "A unique identifier of the form, must not contain whitespace",
+                    "required": true
+                },
+                {
+                    "type": "string",
+                    "name": "form_action",
+                    "label": "Form action",
+                    "description": "The path of your custom \"success\" page, if you want to replace the default success message"
+                },
+                {
+                    "type": "list",
+                    "name": "form_fields",
+                    "label": "Form fields",
+                    "items": {
+                        "type": "model",
+                        "models": [
+                            "form_field"
+                        ]
+                    }
+                },
+                {
+                    "type": "boolean",
+                    "name": "hide_labels",
+                    "label": "Hide form field labels",
+                    "default": false
+                },
+                {
+                    "type": "string",
+                    "name": "submit_label",
+                    "label": "Submit button label",
+                    "required": true
+                },
+                {
+                    "type": "string",
+                    "name": "type",
+                    "label": "Object Type",
+                    "description": "The type of the object",
+                    "const": "form_section",
+                    "hidden": true
+                },
+                {
+                    "type": "string",
+                    "name": "stackbit_model_type",
+                    "label": "Stackbit Model Type",
+                    "description": "Stackbit model type",
+                    "const": "object",
+                    "hidden": true
+                }
+            ],
+            "name": "form_section",
+            "labelField": "title",
+            "hideContent": true
+        },
+        {
+            "type": "object",
+            "label": "Form field",
+            "labelField": "name",
+            "fields": [
+                {
+                    "type": "enum",
+                    "name": "input_type",
+                    "label": "Type",
+                    "options": [
+                        "text",
+                        "textarea",
+                        "email",
+                        "tel",
+                        "number",
+                        "checkbox",
+                        "select"
+                    ],
+                    "description": "Type of the form field",
+                    "required": true
+                },
+                {
+                    "type": "string",
+                    "name": "name",
+                    "label": "Name",
+                    "description": "The name of the field, submitted with the form",
+                    "required": true
+                },
+                {
+                    "type": "string",
+                    "name": "label",
+                    "label": "Label",
+                    "description": "The caption of the field, shown above the field input"
+                },
+                {
+                    "type": "string",
+                    "name": "default_value",
+                    "label": "Placeholder or default value",
+                    "description": "The placeholder for textual field types or default option for select field"
+                },
+                {
+                    "type": "list",
+                    "name": "options",
+                    "label": "Options",
+                    "description": "A list of options for select field",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                {
+                    "type": "boolean",
+                    "name": "is_required",
+                    "label": "Make the field required",
+                    "default": false
+                },
+                {
+                    "type": "string",
+                    "name": "type",
+                    "label": "Object Type",
+                    "description": "The type of the object",
+                    "const": "form_field",
+                    "hidden": true
+                },
+                {
+                    "type": "string",
+                    "name": "stackbit_model_type",
+                    "label": "Stackbit Model Type",
+                    "description": "Stackbit model type",
+                    "const": "object",
+                    "hidden": true
+                }
+            ],
+            "name": "form_field",
+            "hideContent": true
+        },
+        {
+            "type": "object",
+            "label": "Text Section",
+            "fields": [
+                {
+                    "type": "markdown",
+                    "name": "content",
+                    "label": "Content",
+                    "description": "The text content of the section"
+                },
+                {
+                    "type": "string",
+                    "name": "type",
+                    "label": "Object Type",
+                    "description": "The type of the object",
+                    "const": "text_section",
+                    "hidden": true
+                },
+                {
+                    "type": "string",
+                    "name": "stackbit_model_type",
+                    "label": "Stackbit Model Type",
+                    "description": "Stackbit model type",
+                    "const": "object",
+                    "hidden": true
+                }
+            ],
+            "name": "text_section",
+            "hideContent": true
+        },
+        {
+            "type": "object",
+            "label": "Image Section",
+            "fields": [
+                {
+                    "type": "image",
+                    "name": "image",
+                    "label": "Image",
+                    "description": "The image of the section"
+                },
+                {
+                    "type": "string",
+                    "name": "image_alt",
+                    "label": "Image Alt Text",
+                    "description": "The alt text of the section image"
+                },
+                {
+                    "type": "string",
+                    "name": "caption",
+                    "label": "Caption",
+                    "description": "The caption of the image"
+                },
+                {
+                    "type": "enum",
+                    "name": "width",
+                    "label": "Width",
+                    "description": "The width of the image",
+                    "options": [
+                        "regular",
+                        "wide"
+                    ],
+                    "default": "regular",
+                    "required": true
+                },
+                {
+                    "type": "string",
+                    "name": "type",
+                    "label": "Object Type",
+                    "description": "The type of the object",
+                    "const": "image_section",
+                    "hidden": true
+                },
+                {
+                    "type": "string",
+                    "name": "stackbit_model_type",
+                    "label": "Stackbit Model Type",
+                    "description": "Stackbit model type",
+                    "const": "object",
+                    "hidden": true
+                }
+            ],
+            "name": "image_section",
+            "hideContent": true
+        },
+        {
+            "type": "object",
+            "label": "Action",
+            "labelField": "label",
+            "fields": [
+                {
+                    "type": "string",
+                    "name": "label",
+                    "label": "Label",
+                    "required": true
+                },
+                {
+                    "type": "string",
+                    "name": "url",
+                    "label": "URL",
+                    "required": true,
+                    "default": "#"
+                },
+                {
+                    "type": "enum",
+                    "name": "style",
+                    "label": "Style",
+                    "options": [
+                        "link",
+                        "button",
+                        "icon"
+                    ],
+                    "default": "link",
+                    "required": true
+                },
+                {
+                    "type": "enum",
+                    "name": "icon",
+                    "label": "Icon",
+                    "options": [
+                        "dribbble",
+                        "facebook",
+                        "github",
+                        "instagram",
+                        "linkedin",
+                        "pinterest",
+                        "twitter",
+                        "vimeo",
+                        "youtube"
+                    ],
+                    "default": "dribbble"
+                },
+                {
+                    "type": "boolean",
+                    "name": "new_window",
+                    "label": "Make the link open a new tab/window",
+                    "default": false
+                },
+                {
+                    "type": "boolean",
+                    "name": "no_follow",
+                    "label": "No follow",
+                    "default": false,
+                    "description": "Add rel=\"nofollow\" attribute to the link"
+                },
+                {
+                    "type": "string",
+                    "name": "type",
+                    "label": "Object Type",
+                    "description": "The type of the object",
+                    "const": "action",
+                    "hidden": true
+                },
+                {
+                    "type": "string",
+                    "name": "stackbit_model_type",
+                    "label": "Stackbit Model Type",
+                    "description": "Stackbit model type",
+                    "const": "object",
+                    "hidden": true
+                }
+            ],
+            "name": "action",
+            "hideContent": true
+        },
+        {
+            "type": "object",
+            "label": "Page meta data",
+            "fields": [
+                {
+                    "type": "string",
+                    "name": "title",
+                    "label": "Title",
+                    "description": "The page title that goes into the <title> tag",
+                    "default": ""
+                },
+                {
+                    "type": "string",
+                    "name": "description",
+                    "label": "Description",
+                    "description": "The page description that goes into the <meta name=\"description\"> tag",
+                    "default": ""
+                },
+                {
+                    "type": "list",
+                    "name": "robots",
+                    "label": "Robots",
+                    "description": "The items that go into the <meta name=\"robots\"> tag",
+                    "items": {
+                        "type": "enum",
+                        "options": [
+                            "all",
+                            "index",
+                            "follow",
+                            "noindex",
+                            "nofollow",
+                            "noimageindex",
+                            "notranslate",
+                            "none"
+                        ]
+                    }
+                },
+                {
+                    "type": "list",
+                    "name": "extra",
+                    "label": "Extra",
+                    "description": "Additional definition for specific meta tags such as open-graph, twitter, etc.",
+                    "items": {
+                        "type": "object",
+                        "labelField": "name",
+                        "fields": [
+                            {
+                                "type": "string",
+                                "name": "name",
+                                "default": "",
+                                "label": "Name"
+                            },
+                            {
+                                "type": "string",
+                                "name": "value",
+                                "default": "",
+                                "label": "Value"
+                            },
+                            {
+                                "type": "string",
+                                "name": "keyName",
+                                "default": "name",
+                                "label": "Key Name"
+                            },
+                            {
+                                "type": "boolean",
+                                "name": "relativeUrl",
+                                "label": "Relative Url"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "type": "string",
+                    "name": "type",
+                    "label": "Object Type",
+                    "description": "The type of the object",
+                    "const": "stackbit_page_meta",
+                    "hidden": true
+                },
+                {
+                    "type": "string",
+                    "name": "stackbit_model_type",
+                    "label": "Stackbit Model Type",
+                    "description": "Stackbit model type",
+                    "const": "object",
+                    "hidden": true
+                }
+            ],
+            "name": "stackbit_page_meta",
+            "hideContent": true
+        }
+    ],
+    "content": [
+        {
+            "modelType": "config",
+            "modelName": "config",
+            "relPath": "config.yaml",
+            "data": {
+                "stackbit_model_type": "config",
+                "title": "Stackbit Agency Theme",
+                "baseURL": "/",
+                "params": {
+                    "color_scheme": "light",
+                    "accent_color": "green",
+                    "base_font": "fraunces",
+                    "header": {
+                        "type": "header",
+                        "title": "Agency",
+                        "logo": "images/logo.svg",
+                        "logo_alt": "Agency logo",
+                        "has_nav": true,
+                        "nav_links": [
+                            {
+                                "type": "action",
+                                "label": "Home",
+                                "url": "/",
+                                "style": "link",
+                                "stackbit_model_type": "object"
+                            },
+                            {
+                                "type": "action",
+                                "label": "Work",
+                                "url": "/portfolio/",
+                                "style": "link",
+                                "stackbit_model_type": "object"
+                            },
+                            {
+                                "type": "action",
+                                "label": "Journal",
+                                "url": "/blog/",
+                                "style": "link",
+                                "stackbit_model_type": "object"
+                            },
+                            {
+                                "type": "action",
+                                "label": "About",
+                                "url": "/about/",
+                                "style": "link",
+                                "stackbit_model_type": "object"
+                            },
+                            {
+                                "type": "action",
+                                "label": "Contact",
+                                "url": "/contact/",
+                                "style": "button",
+                                "stackbit_model_type": "object"
+                            }
+                        ],
+                        "stackbit_model_type": "object"
+                    },
+                    "footer": {
+                        "type": "footer",
+                        "content": "&copy; Stackbit. All rights reserved. This Jamstack site was created with <a href=\"https://www.stackbit.com/?utm_source=deployed-footer\" target=\"_blank\" rel=\"noopener\">Stackbit</a>. Create yours <a href=\"https://app.stackbit.com/create?theme=agency&utm_source=deployed-footer\" target=\"_blank\" rel=\"noopener\">now</a>",
+                        "has_social": true,
+                        "social_links": [
+                            {
+                                "type": "action",
+                                "label": "Twitter",
+                                "url": "https://twitter.com/",
+                                "style": "icon",
+                                "icon": "twitter",
+                                "new_window": true,
+                                "stackbit_model_type": "object"
+                            },
+                            {
+                                "type": "action",
+                                "label": "Instagram",
+                                "url": "https://www.instagram.com/",
+                                "style": "icon",
+                                "icon": "instagram",
+                                "new_window": true,
+                                "stackbit_model_type": "object"
+                            },
+                            {
+                                "type": "action",
+                                "label": "Dribbble",
+                                "url": "https://dribbble.com/",
+                                "style": "icon",
+                                "icon": "dribbble",
+                                "new_window": true,
+                                "stackbit_model_type": "object"
+                            },
+                            {
+                                "type": "action",
+                                "label": "LinkedIn",
+                                "url": "https://www.linkedin.com/",
+                                "style": "icon",
+                                "icon": "linkedin",
+                                "new_window": true,
+                                "stackbit_model_type": "object"
+                            }
+                        ],
+                        "stackbit_model_type": "object"
+                    }
+                },
+                "stackbit_file_path": "config.yaml"
+            }
+        },
+        {
+            "modelType": "page",
+            "modelName": "advanced",
+            "relPath": "about.md",
+            "data": {
+                "stackbit_model_type": "page",
+                "title": "Our Story",
+                "hide_title": false,
+                "sections": [
+                    {
+                        "type": "content_section",
+                        "image": "images/about.jpg",
+                        "image_alt": "Our team in the meeting room",
+                        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel venenatis augue. Suspendisse tincidunt, nibh eget sodales eleifend, lectus magna elementum lorem, ut bibendum tellus turpis quis risus. Vivamus sagittis enim est, et semper lectus hendrerit ut.\n\nIn sollicitudin imperdiet turpis quis accumsan. Pellentesque euismod turpis et nisi fermentum accumsan.",
+                        "stackbit_model_type": "object"
+                    },
+                    {
+                        "type": "grid_section",
+                        "section_id": "team",
+                        "title": "The Team",
+                        "subtitle": "An optional subtitle of the section",
+                        "col_number": "three",
+                        "grid_items": [
+                            {
+                                "type": "grid_item",
+                                "title": "Gustav Purpleson",
+                                "subtitle": "Co-Founder, Creative Director",
+                                "image": "images/team-1.png",
+                                "content": "Pretium aenean pharetra magna ac placerat vestibulum. Imperdiet sed euismod nisi porta lorem mollis.",
+                                "actions": [
+                                    {
+                                        "type": "action",
+                                        "label": "Twitter",
+                                        "url": "https://twitter.com/",
+                                        "style": "icon",
+                                        "icon": "twitter",
+                                        "new_window": true,
+                                        "stackbit_model_type": "object"
+                                    }
+                                ],
+                                "stackbit_model_type": "object"
+                            },
+                            {
+                                "type": "grid_item",
+                                "title": "Hilary Ouse",
+                                "subtitle": "Co-Founder, Creative Director",
+                                "image": "images/team-2.png",
+                                "content": "Dictum fusce ut placerat orci nulla pellentesque. Ipsum faucibus vitae aliquet nec ullamcorper sit.",
+                                "actions": [
+                                    {
+                                        "type": "action",
+                                        "label": "Twitter",
+                                        "url": "https://twitter.com/",
+                                        "style": "icon",
+                                        "icon": "twitter",
+                                        "new_window": true,
+                                        "stackbit_model_type": "object"
+                                    }
+                                ],
+                                "stackbit_model_type": "object"
+                            },
+                            {
+                                "type": "grid_item",
+                                "title": "Gordon Norman",
+                                "subtitle": "Creative Producer",
+                                "image": "images/team-3.png",
+                                "content": "Interdum velit euismod in pellentesque massa placerat duis ultricies lacus.",
+                                "actions": [
+                                    {
+                                        "type": "action",
+                                        "label": "Twitter",
+                                        "url": "https://twitter.com/",
+                                        "style": "icon",
+                                        "icon": "twitter",
+                                        "new_window": true,
+                                        "stackbit_model_type": "object"
+                                    },
+                                    {
+                                        "type": "action",
+                                        "label": "Instagram",
+                                        "url": "https://www.instagram.com/",
+                                        "style": "icon",
+                                        "icon": "instagram",
+                                        "new_window": true,
+                                        "stackbit_model_type": "object"
+                                    }
+                                ],
+                                "stackbit_model_type": "object"
+                            },
+                            {
+                                "type": "grid_item",
+                                "title": "Parsley Montana",
+                                "subtitle": "Senior Designer, Motion Graphics",
+                                "image": "images/team-4.png",
+                                "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                                "actions": [
+                                    {
+                                        "type": "action",
+                                        "label": "Twitter",
+                                        "url": "https://twitter.com/",
+                                        "style": "icon",
+                                        "icon": "twitter",
+                                        "new_window": true,
+                                        "stackbit_model_type": "object"
+                                    },
+                                    {
+                                        "type": "action",
+                                        "label": "Instagram",
+                                        "url": "https://www.instagram.com/",
+                                        "style": "icon",
+                                        "icon": "instagram",
+                                        "new_window": true,
+                                        "stackbit_model_type": "object"
+                                    }
+                                ],
+                                "stackbit_model_type": "object"
+                            },
+                            {
+                                "type": "grid_item",
+                                "title": "Brandon Guidelines",
+                                "subtitle": "Graphic Designer",
+                                "image": "images/team-5.png",
+                                "content": "Mattis ullamcorper velit sed ullamcorper morbi tincidunt ornare massa eget.",
+                                "actions": [
+                                    {
+                                        "type": "action",
+                                        "label": "Twitter",
+                                        "url": "https://twitter.com/",
+                                        "style": "icon",
+                                        "icon": "twitter",
+                                        "new_window": true,
+                                        "stackbit_model_type": "object"
+                                    }
+                                ],
+                                "stackbit_model_type": "object"
+                            }
+                        ],
+                        "stackbit_model_type": "object"
+                    },
+                    {
+                        "type": "cta_section",
+                        "section_id": "cta",
+                        "title": "Become a Team Player",
+                        "content": "We are always looking for great people to join our team. If you are interested in working for Agency, please send an email to [email@example.com](mailto:email@example.com) with your CV and which position you are interested in.",
+                        "image": "images/cta-about.svg",
+                        "image_alt": "Illustration",
+                        "bg_color": "light",
+                        "stackbit_model_type": "object"
+                    }
+                ],
+                "seo": {
+                    "type": "stackbit_page_meta",
+                    "title": "About Us",
+                    "description": "This is the about us page",
+                    "extra": [
+                        {
+                            "name": "og:type",
+                            "value": "website",
+                            "keyName": "property"
+                        },
+                        {
+                            "name": "og:title",
+                            "value": "About Us",
+                            "keyName": "property"
+                        },
+                        {
+                            "name": "og:description",
+                            "value": "This is the about us page",
+                            "keyName": "property"
+                        },
+                        {
+                            "name": "og:image",
+                            "value": "images/about.jpg",
+                            "keyName": "property",
+                            "relativeUrl": true
+                        },
+                        {
+                            "name": "twitter:card",
+                            "value": "summary_large_image"
+                        },
+                        {
+                            "name": "twitter:title",
+                            "value": "About Us"
+                        },
+                        {
+                            "name": "twitter:description",
+                            "value": "This is the about us page"
+                        },
+                        {
+                            "name": "twitter:image",
+                            "value": "images/about.jpg",
+                            "relativeUrl": true
+                        }
+                    ],
+                    "stackbit_model_type": "object"
+                },
+                "layout": "advanced",
+                "stackbit_url_path": "/about"
+            }
+        },
+        {
+            "modelType": "page",
+            "modelName": "post",
+            "relPath": "blog/function-of-design.md",
+            "data": {
+                "stackbit_model_type": "page",
+                "title": "The function of design is letting design function",
+                "subtitle": "A interesting tale about function of design",
+                "date": "2020-01-15",
+                "thumb_image": "images/post-1-thumb.jpg",
+                "thumb_image_alt": "White concrete building wall",
+                "image": "images/post-1.jpg",
+                "image_alt": "White concrete building wall",
+                "excerpt": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                "seo": {
+                    "type": "stackbit_page_meta",
+                    "title": "The function of design is letting design function",
+                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
+                    "extra": [
+                        {
+                            "name": "og:type",
+                            "value": "article",
+                            "keyName": "property"
+                        },
+                        {
+                            "name": "og:title",
+                            "value": "The function of design is letting design function",
+                            "keyName": "property"
+                        },
+                        {
+                            "name": "og:description",
+                            "value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
+                            "keyName": "property"
+                        },
+                        {
+                            "name": "og:image",
+                            "value": "images/post-1.jpg",
+                            "keyName": "property",
+                            "relativeUrl": true
+                        },
+                        {
+                            "name": "twitter:card",
+                            "value": "summary_large_image"
+                        },
+                        {
+                            "name": "twitter:title",
+                            "value": "The function of design is letting design function"
+                        },
+                        {
+                            "name": "twitter:description",
+                            "value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore"
+                        },
+                        {
+                            "name": "twitter:image",
+                            "value": "images/post-1.jpg",
+                            "relativeUrl": true
+                        }
+                    ],
+                    "stackbit_model_type": "object"
+                },
+                "layout": "post",
+                "stackbit_url_path": "/blog/function-of-design",
+                "content": "\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Laoreet sit amet cursus sit amet dictum sit. Duis ut diam quam nulla porttitor massa id neque. Ut tortor pretium viverra suspendisse potenti nullam. Auctor elit sed vulputate mi sit amet mauris commodo. Dui ut ornare lectus sit amet est placerat. Et malesuada fames ac turpis. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Varius morbi enim nunc faucibus a pellentesque. Erat imperdiet sed euismod nisi porta. Viverra maecenas accumsan lacus vel facilisis volutpat est velit egestas. Dui ut ornare lectus sit amet est placerat in. Vitae sapien pellentesque habitant morbi tristique senectus et netus et. Nullam vehicula ipsum a arcu cursus vitae congue mauris.\n\nAenean sed adipiscing diam donec. Id donec ultrices tincidunt arcu non sodales. Orci ac auctor augue mauris augue neque gravida in. Mattis enim ut tellus elementum sagittis vitae et leo duis. Tortor pretium viverra suspendisse potenti nullam. Malesuada proin libero nunc consequat. Commodo viverra maecenas accumsan lacus vel facilisis volutpat est velit. Mauris vitae ultricies leo integer malesuada nunc. Eget magna fermentum iaculis eu. Molestie at elementum eu facilisis. Dui faucibus in ornare quam viverra orci sagittis. Aliquam ultrices sagittis orci a scelerisque purus semper eget.\n\nTellus mauris a diam maecenas sed enim. Enim facilisis gravida neque convallis a cras. Sollicitudin nibh sit amet commodo nulla facilisi. Ultrices mi tempus imperdiet nulla malesuada pellentesque. Semper viverra nam libero justo laoreet sit. Vestibulum sed arcu non odio euismod lacinia at quis risus. Viverra ipsum nunc aliquet bibendum enim facilisis gravida neque convallis. Aliquam sem et tortor consequat id porta nibh venenatis cras. Et leo duis ut diam quam nulla porttitor massa id. Sagittis vitae et leo duis ut diam quam. Vitae aliquet nec ullamcorper sit amet. Egestas egestas fringilla phasellus faucibus. Elit pellentesque habitant morbi tristique senectus et netus et. Sagittis purus sit amet volutpat consequat mauris nunc. Commodo odio aenean sed adipiscing. Aliquet eget sit amet tellus cras adipiscing. Odio pellentesque diam volutpat commodo sed egestas egestas fringilla phasellus. Justo eget magna fermentum iaculis eu non.\n\nMi quis hendrerit dolor magna. Vel facilisis volutpat est velit egestas dui id ornare arcu. Sed sed risus pretium quam vulputate. Quam viverra orci sagittis eu volutpat odio facilisis mauris. Enim eu turpis egestas pretium. Lorem ipsum dolor sit amet consectetur adipiscing elit duis. Turpis egestas pretium aenean pharetra magna ac. Enim diam vulputate ut pharetra sit amet aliquam id. Sapien nec sagittis aliquam malesuada bibendum arcu vitae elementum. Amet nulla facilisi morbi tempus. Aliquet bibendum enim facilisis gravida neque convallis. Nulla pharetra diam sit amet. Vitae nunc sed velit dignissim sodales ut.\n"
+            }
+        },
+        {
+            "modelType": "page",
+            "modelName": "blog",
+            "relPath": "blog/_index.md",
+            "data": {
+                "stackbit_model_type": "page",
+                "title": "Journal",
+                "subtitle": "News, tips and highlights",
+                "hide_title": false,
+                "col_number": "three",
+                "seo": {
+                    "type": "stackbit_page_meta",
+                    "title": "Journal",
+                    "description": "This is the journal page",
+                    "extra": [
+                        {
+                            "name": "og:type",
+                            "value": "website",
+                            "keyName": "property"
+                        },
+                        {
+                            "name": "og:title",
+                            "value": "Journal",
+                            "keyName": "property"
+                        },
+                        {
+                            "name": "og:description",
+                            "value": "This is the journal page",
+                            "keyName": "property"
+                        },
+                        {
+                            "name": "og:image",
+                            "value": "images/post-1.jpg",
+                            "keyName": "property",
+                            "relativeUrl": true
+                        },
+                        {
+                            "name": "twitter:card",
+                            "value": "summary_large_image"
+                        },
+                        {
+                            "name": "twitter:title",
+                            "value": "Journal"
+                        },
+                        {
+                            "name": "twitter:description",
+                            "value": "This is the journal page"
+                        },
+                        {
+                            "name": "twitter:image",
+                            "value": "images/post-1.jpg",
+                            "relativeUrl": true
+                        }
+                    ],
+                    "stackbit_model_type": "object"
+                },
+                "layout": "blog",
+                "stackbit_url_path": "/blog/"
+            }
+        },
+        {
+            "modelType": "page",
+            "modelName": "post",
+            "relPath": "blog/interior-designer.md",
+            "data": {
+                "stackbit_model_type": "page",
+                "title": "How To Choose An Interior Designer",
+                "subtitle": "Interior design is “the art or process of designing the interior, often including the exterior, of a room or building”.",
+                "date": "2020-09-26",
+                "thumb_image": "images/post-2-thumb.jpg",
+                "thumb_image_alt": "Potted plants, candles on a table",
+                "excerpt": "Interior design is “the art or process of designing the interior, often including the exterior, of a room or building”. An interior designer is someone who coordinates and manages such projects.",
+                "seo": {
+                    "type": "stackbit_page_meta",
+                    "title": "How To Choose An Interior Designer",
+                    "description": "Id massa aliquet arcu accumsan lorem amet accumsan commodo odio cubilia ac eu interdum placerat",
+                    "extra": [
+                        {
+                            "name": "og:type",
+                            "value": "article",
+                            "keyName": "property"
+                        },
+                        {
+                            "name": "og:title",
+                            "value": "How To Choose An Interior Designer",
+                            "keyName": "property"
+                        },
+                        {
+                            "name": "og:description",
+                            "value": "Id massa aliquet arcu accumsan lorem amet accumsan commodo odio cubilia ac eu interdum placerat",
+                            "keyName": "property"
+                        },
+                        {
+                            "name": "og:image",
+                            "value": "images/post-2.jpg",
+                            "keyName": "property",
+                            "relativeUrl": true
+                        },
+                        {
+                            "name": "twitter:card",
+                            "value": "summary_large_image"
+                        },
+                        {
+                            "name": "twitter:title",
+                            "value": "How To Choose An Interior Designer"
+                        },
+                        {
+                            "name": "twitter:description",
+                            "value": "Id massa aliquet arcu accumsan lorem amet accumsan commodo odio cubilia ac eu interdum placerat"
+                        },
+                        {
+                            "name": "twitter:image",
+                            "value": "images/post-2.jpg",
+                            "relativeUrl": true
+                        }
+                    ],
+                    "stackbit_model_type": "object"
+                },
+                "layout": "post",
+                "stackbit_url_path": "/blog/interior-designer",
+                "content": "\nVis accumsan feugiat adipiscing nisl amet adipiscing accumsan blandit accumsan sapien blandit ac amet faucibus aliquet placerat commodo. Interdum ante aliquet commodo accumsan vis phasellus adipiscing. Ornare a in lacinia. Vestibulum accumsan ac metus massa tempor. Accumsan in lacinia ornare massa amet. Ac interdum ac non praesent. Cubilia lacinia interdum massa faucibus blandit nullam. Accumsan phasellus nunc integer. Accumsan euismod nunc adipiscing lacinia erat ut sit. Arcu amet. Id massa aliquet arcu accumsan lorem amet accumsan.\n\nAmet nibh adipiscing adipiscing. Commodo ante vis placerat interdum massa massa primis. Tempus condimentum tempus non ac varius cubilia adipiscing placerat lorem turpis at. Aliquet lorem porttitor interdum. Amet lacus. Aliquam lobortis faucibus blandit ac phasellus. In amet magna non interdum volutpat porttitor metus a ante ac neque. Nisi turpis. Commodo col. Interdum adipiscing mollis ut aliquam id ante adipiscing commodo integer arcu amet Ac interdum ac non praesent. Cubilia lacinia interdum massa faucibus blandit nullam. Accumsan phasellus nunc integer. Accumsan euismod nunc adipiscing lacinia erat ut sit. Arcu amet. Id massa aliquet arcu accumsan lorem amet accumsan commodo odio cubilia ac eu interdum placerat placerat arcu commodo lobortis adipiscing semper ornare pellentesque.\n\nAmet nibh adipiscing adipiscing. Commodo ante vis placerat interdum massa massa primis. Tempus condimentum tempus non ac varius cubilia adipiscing placerat lorem turpis at. Aliquet lorem porttitor interdum. Amet lacus. Aliquam lobortis faucibus blandit ac phasellus. In amet magna non interdum volutpat porttitor metus a ante ac neque. Nisi turpis. Commodo col. Interdum adipiscing mollis ut aliquam id ante adipiscing commodo integer arcu amet blandit adipiscing arcu ante.\n"
+            }
+        },
+        {
+            "modelType": "page",
+            "modelName": "post",
+            "relPath": "blog/street-photography.md",
+            "data": {
+                "stackbit_model_type": "page",
+                "title": "Understanding Street Photography",
+                "date": "2021-01-05",
+                "thumb_image": "images/post-4-thumb.jpg",
+                "thumb_image_alt": "White concrete building",
+                "image": "images/post-4.jpg",
+                "image_alt": "White concrete building",
+                "excerpt": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ac ut consequat semper viverra.",
+                "seo": {
+                    "type": "stackbit_page_meta",
+                    "title": "Understanding Street Photography",
+                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt",
+                    "extra": [
+                        {
+                            "name": "og:type",
+                            "value": "article",
+                            "keyName": "property"
+                        },
+                        {
+                            "name": "og:title",
+                            "value": "Understanding Street Photography",
+                            "keyName": "property"
+                        },
+                        {
+                            "name": "og:description",
+                            "value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt",
+                            "keyName": "property"
+                        },
+                        {
+                            "name": "og:image",
+                            "value": "images/post-4.jpg",
+                            "keyName": "property",
+                            "relativeUrl": true
+                        },
+                        {
+                            "name": "twitter:card",
+                            "value": "summary_large_image"
+                        },
+                        {
+                            "name": "twitter:title",
+                            "value": "Understanding Street Photography"
+                        },
+                        {
+                            "name": "twitter:description",
+                            "value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt"
+                        },
+                        {
+                            "name": "twitter:image",
+                            "value": "images/post-4.jpg",
+                            "relativeUrl": true
+                        }
+                    ],
+                    "stackbit_model_type": "object"
+                },
+                "layout": "post",
+                "stackbit_url_path": "/blog/street-photography",
+                "content": "\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ac ut consequat semper viverra nam libero justo laoreet sit. Tincidunt id aliquet risus feugiat in ante. Non diam phasellus vestibulum lorem sed. Morbi quis commodo odio aenean. Tortor aliquam nulla facilisi cras fermentum odio eu feugiat. Vel eros donec ac odio tempor orci dapibus ultrices. Facilisi morbi tempus iaculis urna id volutpat. Luctus accumsan tortor posuere ac. Sagittis orci a scelerisque purus semper eget. Ultricies mi quis hendrerit dolor magna eget est lorem ipsum. Dolor purus non enim praesent. Lorem sed risus ultricies tristique nulla aliquet enim tortor. Aliquam vestibulum morbi blandit cursus risus.\n\nScelerisque fermentum dui faucibus in ornare quam viverra orci. Libero justo laoreet sit amet cursus. Gravida rutrum quisque non tellus orci. Ut sem nulla pharetra diam sit amet nisl suscipit. Lorem ipsum dolor sit amet consectetur adipiscing elit. Urna porttitor rhoncus dolor purus. Quisque non tellus orci ac auctor augue mauris augue. Consectetur adipiscing elit duis tristique sollicitudin. Vitae semper quis lectus nulla at volutpat. Elementum pulvinar etiam non quam lacus suspendisse faucibus. Porta nibh venenatis cras sed felis eget velit. Ullamcorper malesuada proin libero nunc consequat interdum. Enim sed faucibus turpis in eu mi bibendum neque egestas. Facilisi morbi tempus iaculis urna. Rhoncus est pellentesque elit ullamcorper dignissim. Aenean et tortor at risus viverra adipiscing at in. Cursus euismod quis viverra nibh cras pulvinar mattis nunc sed. Sit amet aliquam id diam. Ut tristique et egestas quis ipsum suspendisse. Congue quisque egestas diam in arcu cursus.\n\nMattis enim ut tellus elementum sagittis. At volutpat diam ut venenatis tellus in metus vulputate eu. Habitant morbi tristique senectus et. Id aliquet lectus proin nibh nisl condimentum id venenatis. Nec tincidunt praesent semper feugiat nibh sed pulvinar. Lectus vestibulum mattis ullamcorper velit sed. Semper viverra nam libero justo. Purus sit amet luctus venenatis. Massa id neque aliquam vestibulum morbi blandit cursus risus at. Feugiat nibh sed pulvinar proin gravida."
+            }
+        },
+        {
+            "modelType": "page",
+            "modelName": "post",
+            "relPath": "blog/why-fonts-matter.md",
+            "data": {
+                "stackbit_model_type": "page",
+                "title": "Why Fonts Matter",
+                "date": "2020-12-27",
+                "thumb_image": "images/post-3-thumb.jpg",
+                "thumb_image_alt": "Black white calendar",
+                "image": "images/post-3.jpg",
+                "image_alt": "Black white calendar",
+                "excerpt": "Amet nibh adipiscing adipiscing. Commodo ante vis placerat interdum massa massa primis. Tempus condimentum tempus non ac varius cubilia adipiscing placerat lorem.",
+                "seo": {
+                    "type": "stackbit_page_meta",
+                    "title": "Why Fonts Matter",
+                    "description": "Amet nibh adipiscing adipiscing ante vis placerat interdum massa massa primis",
+                    "extra": [
+                        {
+                            "name": "og:type",
+                            "value": "article",
+                            "keyName": "property"
+                        },
+                        {
+                            "name": "og:title",
+                            "value": "Why Fonts Matter",
+                            "keyName": "property"
+                        },
+                        {
+                            "name": "og:description",
+                            "value": "Amet nibh adipiscing adipiscing ante vis placerat interdum massa massa primis",
+                            "keyName": "property"
+                        },
+                        {
+                            "name": "og:image",
+                            "value": "images/post-3.jpg",
+                            "keyName": "property",
+                            "relativeUrl": true
+                        },
+                        {
+                            "name": "twitter:card",
+                            "value": "summary_large_image"
+                        },
+                        {
+                            "name": "twitter:title",
+                            "value": "Why Fonts Matter"
+                        },
+                        {
+                            "name": "twitter:description",
+                            "value": "Amet nibh adipiscing adipiscing ante vis placerat interdum massa massa primis"
+                        },
+                        {
+                            "name": "twitter:image",
+                            "value": "images/post-3.jpg",
+                            "relativeUrl": true
+                        }
+                    ],
+                    "stackbit_model_type": "object"
+                },
+                "layout": "post",
+                "stackbit_url_path": "/blog/why-fonts-matter",
+                "content": "\n**Donec neque lorem**, sodales non fermentum et, aliquam quis erat. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla tincidunt justo eu ante ultrices posuere. Duis cursus at massa ac tempus. Morbi sit amet mi sit amet lorem ullamcorper feugiat ac et dolor. Nullam rhoncus urna tincidunt odio ultricies, at dapibus felis facilisis. Ut condimentum nulla eget feugiat finibus. Suspendisse sit amet purus a eros dignissim commodo ut a erat.\n\nPhasellus commodo dolor sit amet, consectetur adipiscing elit. Nam a finibus magna. Sed et pulvinar dolor. Suspendisse vitae iaculis lacus. Proin vulputate, leo eget pulvinar faucibus, felis est condimentum lorem, in rhoncus neque felis ac leo. Duis felis lectus, ultrices id dolor vel, tincidunt tristique nunc. Nullam quis orci magna. Proin eget nunc et dolor hendrerit eleifend. Praesent a vehicula justo, quis convallis lacus. Phasellus porttitor, turpis vel placerat condimentum, urna felis volutpat ligula, et ultricies arcu mi ac nisl. Cras id consectetur ligula, et mollis odio. Aenean erat dui, congue vitae nisi a, aliquet lobortis eros.\n\n> The beauty of type lies in its utility, prettiness without readability serves neither author nor reader. - James Felici\n\nSed augue lorem, porta nec lorem et, luctus egestas nunc. Sed in tellus at enim commodo pharetra. Mauris nisi ipsum, auctor nec justo non, lobortis ullamcorper magna. Pellentesque posuere posuere dolor, quis egestas est ultrices id. Cras at urna lectus. Curabitur in placerat ligula. Phasellus pharetra scelerisque lectus, id sagittis lorem pretium eget. Phasellus commodo nunc ante, nec commodo urna iaculis eu. Pellentesque euismod et ante quis vestibulum. Ut quis sapien nisi. Sed interdum sit amet sem et vestibulum. Maecenas tempor dictum leo, quis rutrum purus tincidunt vitae. Fusce vel turpis risus. Donec congue accumsan tempus. Nunc nec elit magna. Aenean luctus auctor ligula at lacinia.\n\nDonec neque lorem, sodales non fermentum et, aliquam quis erat. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla tincidunt justo eu ante ultrices posuere. Duis cursus at massa ac tempus. Morbi sit amet mi sit amet lorem ullamcorper feugiat ac et dolor. Nullam rhoncus urna tincidunt odio ultricies, at dapibus felis facilisis. Ut condimentum nulla eget feugiat finibus. Suspendisse sit amet purus a eros dignissim commodo ut a erat. Maecenas pretium velit faucibus, porttitor lacus eu, eleifend sapien. In hac habitasse platea dictumst. Pellentesque nisi nisl, consectetur a accumsan sit amet, finibus vel nibh. Vivamus aliquet urna non turpis vehicula maximus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.\n"
+            }
+        },
+        {
+            "modelType": "page",
+            "modelName": "post",
+            "relPath": "blog/working-from-home.md",
+            "data": {
+                "stackbit_model_type": "page",
+                "title": "The Advantages and Disadvantages of Working from Home",
+                "date": "2021-01-15",
+                "thumb_image": "images/post-5-thumb.jpg",
+                "thumb_image_alt": "White wooden table with a chair",
+                "image": "images/post-5.jpg",
+                "image_alt": "White wooden table with a chair",
+                "excerpt": "Interdum posuere lorem ipsum dolor sit amet consectetur. Odio morbi quis commodo odio aenean sed adipiscing diam donec. Vitae congue mauris rhoncus aenean vel elit.",
+                "seo": {
+                    "type": "stackbit_page_meta",
+                    "title": "The Advantages and Disadvantages of Working from Home",
+                    "description": "Interdum posuere lorem ipsum dolor sit amet consectetur",
+                    "extra": [
+                        {
+                            "name": "og:type",
+                            "value": "article",
+                            "keyName": "property"
+                        },
+                        {
+                            "name": "og:title",
+                            "value": "The Advantages and Disadvantages of Working from Home",
+                            "keyName": "property"
+                        },
+                        {
+                            "name": "og:description",
+                            "value": "Interdum posuere lorem ipsum dolor sit amet consectetur",
+                            "keyName": "property"
+                        },
+                        {
+                            "name": "og:image",
+                            "value": "images/post-5.jpg",
+                            "keyName": "property",
+                            "relativeUrl": true
+                        },
+                        {
+                            "name": "twitter:card",
+                            "value": "summary_large_image"
+                        },
+                        {
+                            "name": "twitter:title",
+                            "value": "The Advantages and Disadvantages of Working from Home"
+                        },
+                        {
+                            "name": "twitter:description",
+                            "value": "Interdum posuere lorem ipsum dolor sit amet consectetur"
+                        },
+                        {
+                            "name": "twitter:image",
+                            "value": "images/post-5.jpg",
+                            "relativeUrl": true
+                        }
+                    ],
+                    "stackbit_model_type": "object"
+                },
+                "layout": "post",
+                "stackbit_url_path": "/blog/working-from-home",
+                "content": "\nInterdum posuere lorem ipsum dolor sit amet consectetur. Odio morbi quis commodo odio aenean sed adipiscing diam donec. Vitae congue mauris rhoncus aenean vel elit scelerisque mauris pellentesque. Porttitor massa id neque aliquam vestibulum morbi blandit cursus. Vitae aliquet nec ullamcorper sit. Gravida arcu ac tortor dignissim convallis aenean. Quisque sagittis purus sit amet volutpat consequat mauris nunc congue. Est ultricies integer quis auctor. Commodo quis imperdiet massa tincidunt nunc pulvinar sapien. Vel risus commodo viverra maecenas accumsan lacus. Donec adipiscing tristique risus nec feugiat in fermentum. Habitasse platea dictumst quisque sagittis purus sit. Quam adipiscing vitae proin sagittis nisl rhoncus mattis rhoncus urna. Id leo in vitae turpis massa sed. Auctor elit sed vulputate mi sit. Gravida arcu ac tortor dignissim convallis aenean et.\n\n## Types Of Work\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Auctor augue mauris augue neque gravida in fermentum et. Eget mi proin sed libero enim sed faucibus turpis in. Semper auctor neque vitae tempus. Nibh nisl condimentum id venenatis a condimentum vitae sapien. Et malesuada fames ac turpis egestas sed tempus urna. Tristique magna sit amet purus gravida. Lobortis elementum nibh tellus molestie. Natoque penatibus et magnis dis parturient montes nascetur. Lacus sed viverra tellus in hac habitasse platea. Duis ultricies lacus sed turpis tincidunt id aliquet risus. Vitae congue eu consequat ac felis donec et. Nec tincidunt praesent semper feugiat nibh sed pulvinar proin gravida. Lobortis mattis aliquam faucibus purus in massa tempor nec feugiat. In nibh mauris cursus mattis molestie. Proin libero nunc consequat interdum varius sit amet. Molestie at elementum eu facilisis sed odio morbi quis commodo.\n\nVitae congue mauris rhoncus aenean vel elit scelerisque mauris. Ac tincidunt vitae semper quis lectus nulla at volutpat diam. Eget arcu dictum varius duis at consectetur lorem. Nec ullamcorper sit amet risus nullam eget felis. Laoreet non curabitur gravida arcu ac tortor. Cursus metus aliquam eleifend mi in. Faucibus vitae aliquet nec ullamcorper sit amet. Consectetur a erat nam at lectus urna. Porttitor eget dolor morbi non arcu risus quis varius quam. Condimentum mattis pellentesque id nibh tortor id aliquet. Augue neque gravida in fermentum..\n"
+            }
+        },
+        {
+            "modelType": "page",
+            "modelName": "post",
+            "relPath": "blog/workplace.md",
+            "data": {
+                "stackbit_model_type": "page",
+                "title": "The Elements of Great Workplace Design",
+                "date": "2021-02-12",
+                "thumb_image": "images/post-6-thumb.jpg",
+                "thumb_image_alt": "White desk lamp beside green plant",
+                "image": "images/post-6.jpg",
+                "image_alt": "White desk lamp beside green plant",
+                "excerpt": "Vis accumsan feugiat adipiscing nisl amet adipiscing accumsan blandit accumsan sapien blandit ac amet faucibus aliquet placerat commodo.",
+                "seo": {
+                    "type": "stackbit_page_meta",
+                    "title": "The Elements of Great Workplace Design",
+                    "description": "Vis accumsan feugiat adipiscing nisl amet adipiscing accumsan blandit accumsan sapien blandit",
+                    "extra": [
+                        {
+                            "name": "og:type",
+                            "value": "article",
+                            "keyName": "property"
+                        },
+                        {
+                            "name": "og:title",
+                            "value": "The Elements of Great Workplace Design",
+                            "keyName": "property"
+                        },
+                        {
+                            "name": "og:description",
+                            "value": "Vis accumsan feugiat adipiscing nisl amet adipiscing accumsan blandit accumsan sapien blandit",
+                            "keyName": "property"
+                        },
+                        {
+                            "name": "og:image",
+                            "value": "images/post-6.jpg",
+                            "keyName": "property",
+                            "relativeUrl": true
+                        },
+                        {
+                            "name": "twitter:card",
+                            "value": "summary_large_image"
+                        },
+                        {
+                            "name": "twitter:title",
+                            "value": "The Elements of Great Workplace Design"
+                        },
+                        {
+                            "name": "twitter:description",
+                            "value": "Vis accumsan feugiat adipiscing nisl amet adipiscing accumsan blandit accumsan sapien blandit"
+                        },
+                        {
+                            "name": "twitter:image",
+                            "value": "images/post-6.jpg",
+                            "relativeUrl": true
+                        }
+                    ],
+                    "stackbit_model_type": "object"
+                },
+                "layout": "post",
+                "stackbit_url_path": "/blog/workplace",
+                "content": "\nVis accumsan feugiat adipiscing nisl amet adipiscing accumsan blandit accumsan sapien blandit ac amet faucibus aliquet placerat commodo. Interdum ante aliquet commodo accumsan vis phasellus adipiscing. Ornare a in lacinia. Vestibulum accumsan ac metus massa tempor. Accumsan in lacinia ornare massa amet. Ac interdum ac non praesent. Cubilia lacinia interdum massa faucibus blandit nullam. Accumsan phasellus nunc integer. Accumsan euismod nunc adipiscing lacinia erat ut sit. Arcu amet. Id massa aliquet arcu accumsan lorem amet accumsan.\n\nAmet nibh adipiscing adipiscing. Commodo ante vis placerat interdum massa massa primis. Tempus condimentum tempus non ac varius cubilia adipiscing placerat lorem turpis at. Aliquet lorem porttitor interdum. Amet lacus. Aliquam lobortis faucibus blandit ac phasellus. In amet magna non interdum volutpat porttitor metus a ante ac neque. Nisi turpis. Commodo col. Interdum adipiscing mollis ut aliquam id ante adipiscing commodo integer arcu amet Ac interdum ac non praesent. Cubilia lacinia interdum massa faucibus blandit nullam. Accumsan phasellus nunc integer. Accumsan euismod nunc adipiscing lacinia erat ut sit. Arcu amet. Id massa aliquet arcu accumsan lorem amet accumsan commodo odio cubilia ac eu interdum placerat placerat arcu commodo lobortis adipiscing semper ornare pellentesque.\n\nAmet nibh adipiscing adipiscing. Commodo ante vis placerat interdum massa massa primis. Tempus condimentum tempus non ac varius cubilia adipiscing placerat lorem turpis at. Aliquet lorem porttitor interdum. Amet lacus. Aliquam lobortis faucibus blandit ac phasellus. In amet magna non interdum volutpat porttitor metus a ante ac neque. Nisi turpis. Commodo col. Interdum adipiscing mollis ut aliquam id ante adipiscing commodo integer arcu amet blandit adipiscing arcu ante.\n"
+            }
+        },
+        {
+            "modelType": "page",
+            "modelName": "advanced",
+            "relPath": "contact.md",
+            "data": {
+                "stackbit_model_type": "page",
+                "title": "Contact",
+                "hide_title": false,
+                "sections": [
+                    {
+                        "type": "form_section",
+                        "section_id": "contact-form",
+                        "content": "Let’s build something great together.<br>\nComplete our contact form or send us an email at [email@example.com](mailto:email@example.com).\n\n***\n\n## Our Offices\n\n### San Francisco\n1234 Some St.<br>\nSan Francisco, CA 12345<br>\n1-234-556-7890<br>\n[Get directions &rarr;](https://goo.gl/maps/eh6fn7JjMS4vYs337)\n\n### New York\n1234 Some St.<br>\nNew York, NY 12345<br>\n1-234-556-7890<br>\n[Get directions &rarr;](https://goo.gl/maps/eh6fn7JjMS4vYs337)",
+                        "form_id": "contactForm",
+                        "form_action": "/thank-you",
+                        "form_fields": [
+                            {
+                                "type": "form_field",
+                                "input_type": "text",
+                                "name": "name",
+                                "label": "Name",
+                                "default_value": "Your name",
+                                "is_required": true,
+                                "stackbit_model_type": "object"
+                            },
+                            {
+                                "type": "form_field",
+                                "input_type": "email",
+                                "name": "email",
+                                "label": "Email",
+                                "default_value": "Your email address",
+                                "is_required": true,
+                                "stackbit_model_type": "object"
+                            },
+                            {
+                                "type": "form_field",
+                                "input_type": "select",
+                                "name": "subject",
+                                "label": "What services are you looking for?",
+                                "default_value": "Please select",
+                                "options": [
+                                    "Branding",
+                                    "Design",
+                                    "Digital"
+                                ],
+                                "stackbit_model_type": "object"
+                            },
+                            {
+                                "type": "form_field",
+                                "input_type": "textarea",
+                                "name": "message",
+                                "label": "Message",
+                                "default_value": "Your message",
+                                "stackbit_model_type": "object"
+                            },
+                            {
+                                "type": "form_field",
+                                "input_type": "checkbox",
+                                "name": "consent",
+                                "label": "I understand that this form is storing my submitted information so I can be contacted.",
+                                "stackbit_model_type": "object"
+                            }
+                        ],
+                        "submit_label": "Send Message",
+                        "stackbit_model_type": "object"
+                    }
+                ],
+                "seo": {
+                    "type": "stackbit_page_meta",
+                    "title": "Contact",
+                    "description": "This is the contact page",
+                    "extra": [
+                        {
+                            "name": "og:type",
+                            "value": "website",
+                            "keyName": "property"
+                        },
+                        {
+                            "name": "og:title",
+                            "value": "Contact",
+                            "keyName": "property"
+                        },
+                        {
+                            "name": "og:description",
+                            "value": "This is the contact page",
+                            "keyName": "property"
+                        },
+                        {
+                            "name": "twitter:card",
+                            "value": "summary"
+                        },
+                        {
+                            "name": "twitter:title",
+                            "value": "Contact"
+                        },
+                        {
+                            "name": "twitter:description",
+                            "value": "This is the contact page"
+                        }
+                    ],
+                    "stackbit_model_type": "object"
+                },
+                "layout": "advanced",
+                "stackbit_url_path": "/contact"
+            }
+        },
+        {
+            "modelType": "page",
+            "modelName": "advanced",
+            "relPath": "_index.md",
+            "data": {
+                "stackbit_model_type": "page",
+                "title": "Home",
+                "hide_title": true,
+                "sections": [
+                    {
+                        "type": "hero_section",
+                        "section_id": "hero",
+                        "title": "This is an Award Winning Agency Based in San Francisco and Focusing on Digital, Identity, and Print Design.",
+                        "content": "We are a brand and design practice. We work closely with you, your team to deliver inspiring work, which enables your organization to grow. [Let's talk](/contact/).",
+                        "stackbit_model_type": "object"
+                    },
+                    {
+                        "type": "portfolio_section",
+                        "section_id": "latest-projects",
+                        "title": "Recent Work",
+                        "subtitle": "Explore case studies",
+                        "layout_style": "tiles",
+                        "projects_number": 6,
+                        "view_all_label": "View All",
+                        "view_all_url": "portfolio",
+                        "stackbit_model_type": "object"
+                    },
+                    {
+                        "type": "grid_section",
+                        "section_id": "clients",
+                        "title": "Clients",
+                        "subtitle": "A few of the companies we're proud to call partners",
+                        "col_number": "three",
+                        "grid_items": [
+                            {
+                                "type": "grid_item",
+                                "image": "images/logo-1.svg",
+                                "image_alt": "Logo 1",
+                                "stackbit_model_type": "object"
+                            },
+                            {
+                                "type": "grid_item",
+                                "image": "images/logo-2.svg",
+                                "image_alt": "Logo 2",
+                                "stackbit_model_type": "object"
+                            },
+                            {
+                                "type": "grid_item",
+                                "image": "images/logo-3.svg",
+                                "image_alt": "Logo 3",
+                                "stackbit_model_type": "object"
+                            },
+                            {
+                                "type": "grid_item",
+                                "image": "images/logo-4.svg",
+                                "image_alt": "Logo 4",
+                                "stackbit_model_type": "object"
+                            },
+                            {
+                                "type": "grid_item",
+                                "image": "images/logo-5.svg",
+                                "image_alt": "Logo 5",
+                                "stackbit_model_type": "object"
+                            }
+                        ],
+                        "stackbit_model_type": "object"
+                    },
+                    {
+                        "type": "grid_section",
+                        "section_id": "services",
+                        "title": "Services",
+                        "subtitle": "What we do",
+                        "col_number": "three",
+                        "grid_items": [
+                            {
+                                "type": "grid_item",
+                                "title": "Business design",
+                                "image": "images/service-1.svg",
+                                "content": "- Research and insight\n- Business innovation and transformation\n- Brand and strategy\n- Brand portfolio strategy\n- Design strategy\n- Digital and experience strategy\n- Communication strategy",
+                                "stackbit_model_type": "object"
+                            },
+                            {
+                                "type": "grid_item",
+                                "title": "Brand design",
+                                "image": "images/service-2.svg",
+                                "content": "- Brand development\n- Naming\n- Brand identity\n- Design systems\n- Concept development\n- Brand implementation and management\n- Typography",
+                                "stackbit_model_type": "object"
+                            },
+                            {
+                                "type": "grid_item",
+                                "title": "Experience design",
+                                "image": "images/service-3.svg",
+                                "content": "- Digital product design\n- Service design\n- Environmental and retail design\n- Packaging design\n- Art direction\n- Communication design\n- Social media\n- Product design",
+                                "stackbit_model_type": "object"
+                            }
+                        ],
+                        "stackbit_model_type": "object"
+                    },
+                    {
+                        "type": "cta_section",
+                        "section_id": "cta",
+                        "title": "Let’s Work Together!",
+                        "content": "Say hello at [email@example.com](mailto:email@example.com) or tell us more about your project by getting started below.",
+                        "actions": [
+                            {
+                                "type": "action",
+                                "label": "Let's start",
+                                "url": "/contact",
+                                "style": "button",
+                                "stackbit_model_type": "object"
+                            }
+                        ],
+                        "image": "images/cta.svg",
+                        "image_alt": "Illustration",
+                        "bg_color": "light",
+                        "stackbit_model_type": "object"
+                    }
+                ],
+                "layout": "advanced",
+                "stackbit_url_path": "/"
+            }
+        },
+        {
+            "modelType": "page",
+            "modelName": "portfolio",
+            "relPath": "portfolio/_index.md",
+            "data": {
+                "stackbit_model_type": "page",
+                "title": "Portfolio",
+                "subtitle": "This is an optional subtitle for the portfolio page",
+                "layout_style": "mosaic",
+                "seo": {
+                    "type": "stackbit_page_meta",
+                    "title": "Portfolio",
+                    "description": "This is the portfolio page",
+                    "extra": [
+                        {
+                            "name": "og:type",
+                            "value": "website",
+                            "keyName": "property"
+                        },
+                        {
+                            "name": "og:title",
+                            "value": "Portfolio",
+                            "keyName": "property"
+                        },
+                        {
+                            "name": "og:description",
+                            "value": "This is the portfolio page",
+                            "keyName": "property"
+                        },
+                        {
+                            "name": "og:image",
+                            "value": "images/work-book-1.jpg",
+                            "keyName": "property",
+                            "relativeUrl": true
+                        },
+                        {
+                            "name": "twitter:card",
+                            "value": "summary_large_image"
+                        },
+                        {
+                            "name": "twitter:title",
+                            "value": "Portfolio"
+                        },
+                        {
+                            "name": "twitter:description",
+                            "value": "This is the portfolio page"
+                        },
+                        {
+                            "name": "twitter:image",
+                            "value": "images/work-book-1.jpg",
+                            "relativeUrl": true
+                        }
+                    ],
+                    "stackbit_model_type": "object"
+                },
+                "layout": "portfolio",
+                "stackbit_url_path": "/portfolio/"
+            }
+        },
+        {
+            "modelType": "page",
+            "modelName": "project",
+            "relPath": "portfolio/project-1.md",
+            "data": {
+                "stackbit_model_type": "page",
+                "title": "Design Is One",
+                "subtitle": "Print",
+                "date": "2020-02-10",
+                "thumb_image": "images/work-poster-1-thumb.jpg",
+                "thumb_image_alt": "Design Is One preview",
+                "sections": [
+                    {
+                        "type": "image_section",
+                        "image": "images/work-poster-1.jpg",
+                        "image_alt": "Design Is One 1",
+                        "caption": "This is the caption of the image",
+                        "width": "wide",
+                        "stackbit_model_type": "object"
+                    },
+                    {
+                        "type": "text_section",
+                        "content": "Vis accumsan feugiat adipiscing nisl amet adipiscing accumsan blandit accumsan sapien blandit ac amet faucibus aliquet placerat commodo. Interdum ante aliquet commodo accumsan vis phasellus adipiscing. Ornare a in lacinia. Vestibulum accumsan ac metus massa tempor. Accumsan in lacinia ornare massa amet. Ac interdum ac non praesent. Cubilia lacinia interdum massa faucibus blandit nullam. Accumsan phasellus nunc integer. Accumsan euismod nunc adipiscing lacinia erat ut sit. Arcu amet. Id massa aliquet arcu accumsan lorem amet accumsan.",
+                        "stackbit_model_type": "object"
+                    },
+                    {
+                        "type": "image_section",
+                        "image": "images/work-poster-2.jpg",
+                        "image_alt": "Design Is One 2",
+                        "width": "wide",
+                        "stackbit_model_type": "object"
+                    },
+                    {
+                        "type": "text_section",
+                        "content": "Amet nibh adipiscing adipiscing. Commodo ante vis placerat interdum massa massa primis. Tempus condimentum tempus non ac varius cubilia adipiscing placerat lorem turpis at. Aliquet lorem porttitor interdum. Amet lacus. Aliquam lobortis faucibus blandit ac phasellus.",
+                        "stackbit_model_type": "object"
+                    },
+                    {
+                        "type": "image_section",
+                        "image": "images/work-poster-3.jpg",
+                        "image_alt": "Design Is One 3",
+                        "width": "wide",
+                        "stackbit_model_type": "object"
+                    },
+                    {
+                        "type": "text_section",
+                        "content": "Vis accumsan feugiat adipiscing nisl amet adipiscing accumsan blandit accumsan sapien blandit ac amet faucibus aliquet placerat commodo. Interdum ante aliquet commodo accumsan vis phasellus adipiscing. Ornare a in lacinia. Vestibulum accumsan ac metus massa tempor. Accumsan in lacinia ornare massa amet. Ac interdum ac non praesent. Cubilia lacinia interdum massa faucibus blandit nullam. Accumsan phasellus nunc integer. Accumsan euismod nunc adipiscing lacinia erat ut sit. Arcu amet. Id massa aliquet arcu accumsan lorem amet accumsan.",
+                        "stackbit_model_type": "object"
+                    }
+                ],
+                "seo": {
+                    "type": "stackbit_page_meta",
+                    "title": "Design Is One",
+                    "description": "This is the sample project description",
+                    "extra": [
+                        {
+                            "name": "og:type",
+                            "value": "website",
+                            "keyName": "property"
+                        },
+                        {
+                            "name": "og:title",
+                            "value": "Design Is One",
+                            "keyName": "property"
+                        },
+                        {
+                            "name": "og:description",
+                            "value": "This is the sample project description",
+                            "keyName": "property"
+                        },
+                        {
+                            "name": "og:image",
+                            "value": "images/work-poster-1.jpg",
+                            "keyName": "property",
+                            "relativeUrl": true
+                        },
+                        {
+                            "name": "twitter:card",
+                            "value": "summary_large_image"
+                        },
+                        {
+                            "name": "twitter:title",
+                            "value": "Design Is One"
+                        },
+                        {
+                            "name": "twitter:description",
+                            "value": "This is the sample project description"
+                        },
+                        {
+                            "name": "twitter:image",
+                            "value": "images/work-poster-1.jpg",
+                            "relativeUrl": true
+                        }
+                    ],
+                    "stackbit_model_type": "object"
+                },
+                "layout": "project",
+                "stackbit_url_path": "/portfolio/project-1"
+            }
+        },
+        {
+            "modelType": "page",
+            "modelName": "project",
+            "relPath": "portfolio/project-2.md",
+            "data": {
+                "stackbit_model_type": "page",
+                "title": "Aimi",
+                "subtitle": "Brand Development",
+                "date": "2020-03-10",
+                "thumb_image": "images/work-branding-1-thumb.jpg",
+                "thumb_image_alt": "Aimi preview",
+                "sections": [
+                    {
+                        "type": "image_section",
+                        "image": "images/work-branding-1.jpg",
+                        "image_alt": "Aimi 1",
+                        "caption": "This is the caption of the image",
+                        "width": "wide",
+                        "stackbit_model_type": "object"
+                    },
+                    {
+                        "type": "text_section",
+                        "content": "Vis accumsan feugiat adipiscing nisl amet adipiscing accumsan blandit accumsan sapien blandit ac amet faucibus aliquet placerat commodo. Interdum ante aliquet commodo accumsan vis phasellus adipiscing. Ornare a in lacinia. Vestibulum accumsan ac metus massa tempor. Accumsan in lacinia ornare massa amet. Ac interdum ac non praesent. Cubilia lacinia interdum massa faucibus blandit nullam. Accumsan phasellus nunc integer. Accumsan euismod nunc adipiscing lacinia erat ut sit. Arcu amet. Id massa aliquet arcu accumsan lorem amet accumsan.",
+                        "stackbit_model_type": "object"
+                    },
+                    {
+                        "type": "image_section",
+                        "image": "images/work-branding-2.jpg",
+                        "image_alt": "Aimi 2",
+                        "width": "wide",
+                        "stackbit_model_type": "object"
+                    },
+                    {
+                        "type": "text_section",
+                        "content": "Amet nibh adipiscing adipiscing. Commodo ante vis placerat interdum massa massa primis. Tempus condimentum tempus non ac varius cubilia adipiscing placerat lorem turpis at. Aliquet lorem porttitor interdum. Amet lacus. Aliquam lobortis faucibus blandit ac phasellus.",
+                        "stackbit_model_type": "object"
+                    },
+                    {
+                        "type": "image_section",
+                        "image": "images/work-branding-3.jpg",
+                        "image_alt": "Aimi 3",
+                        "width": "wide",
+                        "stackbit_model_type": "object"
+                    },
+                    {
+                        "type": "text_section",
+                        "content": "Vis accumsan feugiat adipiscing nisl amet adipiscing accumsan blandit accumsan sapien blandit ac amet faucibus aliquet placerat commodo. Interdum ante aliquet commodo accumsan vis phasellus adipiscing. Ornare a in lacinia. Vestibulum accumsan ac metus massa tempor. Accumsan in lacinia ornare massa amet. Ac interdum ac non praesent. Cubilia lacinia interdum massa faucibus blandit nullam. Accumsan phasellus nunc integer. Accumsan euismod nunc adipiscing lacinia erat ut sit. Arcu amet. Id massa aliquet arcu accumsan lorem amet accumsan.",
+                        "stackbit_model_type": "object"
+                    }
+                ],
+                "seo": {
+                    "type": "stackbit_page_meta",
+                    "title": "Aimi",
+                    "description": "This is the sample project description",
+                    "extra": [
+                        {
+                            "name": "og:type",
+                            "value": "website",
+                            "keyName": "property"
+                        },
+                        {
+                            "name": "og:title",
+                            "value": "Aimi",
+                            "keyName": "property"
+                        },
+                        {
+                            "name": "og:description",
+                            "value": "This is the sample project description",
+                            "keyName": "property"
+                        },
+                        {
+                            "name": "og:image",
+                            "value": "images/work-branding-1.jpg",
+                            "keyName": "property",
+                            "relativeUrl": true
+                        },
+                        {
+                            "name": "twitter:card",
+                            "value": "summary_large_image"
+                        },
+                        {
+                            "name": "twitter:title",
+                            "value": "Aimi"
+                        },
+                        {
+                            "name": "twitter:description",
+                            "value": "This is the sample project description"
+                        },
+                        {
+                            "name": "twitter:image",
+                            "value": "images/work-branding-1.jpg",
+                            "relativeUrl": true
+                        }
+                    ],
+                    "stackbit_model_type": "object"
+                },
+                "layout": "project",
+                "stackbit_url_path": "/portfolio/project-2"
+            }
+        },
+        {
+            "modelType": "page",
+            "modelName": "project",
+            "relPath": "portfolio/project-3.md",
+            "data": {
+                "stackbit_model_type": "page",
+                "title": "The Book",
+                "subtitle": "Editorial Design",
+                "date": "2020-04-10",
+                "thumb_image": "images/work-book-cover-1-thumb.jpg",
+                "thumb_image_alt": "The Book preview",
+                "sections": [
+                    {
+                        "type": "image_section",
+                        "image": "images/work-book-cover-1.jpg",
+                        "image_alt": "The Book 1",
+                        "caption": "This is the caption of the image",
+                        "width": "wide",
+                        "stackbit_model_type": "object"
+                    },
+                    {
+                        "type": "text_section",
+                        "content": "Vis accumsan feugiat adipiscing nisl amet adipiscing accumsan blandit accumsan sapien blandit ac amet faucibus aliquet placerat commodo. Interdum ante aliquet commodo accumsan vis phasellus adipiscing. Ornare a in lacinia. Vestibulum accumsan ac metus massa tempor. Accumsan in lacinia ornare massa amet. Ac interdum ac non praesent. Cubilia lacinia interdum massa faucibus blandit nullam. Accumsan phasellus nunc integer. Accumsan euismod nunc adipiscing lacinia erat ut sit. Arcu amet. Id massa aliquet arcu accumsan lorem amet accumsan.",
+                        "stackbit_model_type": "object"
+                    },
+                    {
+                        "type": "image_section",
+                        "image": "images/work-book-cover-2.jpg",
+                        "image_alt": "The Book 2",
+                        "width": "wide",
+                        "stackbit_model_type": "object"
+                    },
+                    {
+                        "type": "text_section",
+                        "content": "Amet nibh adipiscing adipiscing. Commodo ante vis placerat interdum massa massa primis. Tempus condimentum tempus non ac varius cubilia adipiscing placerat lorem turpis at. Aliquet lorem porttitor interdum. Amet lacus. Aliquam lobortis faucibus blandit ac phasellus.",
+                        "stackbit_model_type": "object"
+                    },
+                    {
+                        "type": "image_section",
+                        "image": "images/work-book-cover-3.jpg",
+                        "image_alt": "The Book 3",
+                        "width": "wide",
+                        "stackbit_model_type": "object"
+                    },
+                    {
+                        "type": "text_section",
+                        "content": "Vis accumsan feugiat adipiscing nisl amet adipiscing accumsan blandit accumsan sapien blandit ac amet faucibus aliquet placerat commodo. Interdum ante aliquet commodo accumsan vis phasellus adipiscing. Ornare a in lacinia. Vestibulum accumsan ac metus massa tempor. Accumsan in lacinia ornare massa amet. Ac interdum ac non praesent. Cubilia lacinia interdum massa faucibus blandit nullam. Accumsan phasellus nunc integer. Accumsan euismod nunc adipiscing lacinia erat ut sit. Arcu amet. Id massa aliquet arcu accumsan lorem amet accumsan.",
+                        "stackbit_model_type": "object"
+                    }
+                ],
+                "seo": {
+                    "type": "stackbit_page_meta",
+                    "title": "The Book",
+                    "description": "This is the sample project description",
+                    "extra": [
+                        {
+                            "name": "og:type",
+                            "value": "website",
+                            "keyName": "property"
+                        },
+                        {
+                            "name": "og:title",
+                            "value": "The Book",
+                            "keyName": "property"
+                        },
+                        {
+                            "name": "og:description",
+                            "value": "This is the sample project description",
+                            "keyName": "property"
+                        },
+                        {
+                            "name": "og:image",
+                            "value": "images/work-book-cover-1.jpg",
+                            "keyName": "property",
+                            "relativeUrl": true
+                        },
+                        {
+                            "name": "twitter:card",
+                            "value": "summary_large_image"
+                        },
+                        {
+                            "name": "twitter:title",
+                            "value": "The Book"
+                        },
+                        {
+                            "name": "twitter:description",
+                            "value": "This is the sample project description"
+                        },
+                        {
+                            "name": "twitter:image",
+                            "value": "images/work-book-cover-1.jpg",
+                            "relativeUrl": true
+                        }
+                    ],
+                    "stackbit_model_type": "object"
+                },
+                "layout": "project",
+                "stackbit_url_path": "/portfolio/project-3"
+            }
+        },
+        {
+            "modelType": "page",
+            "modelName": "project",
+            "relPath": "portfolio/project-4.md",
+            "data": {
+                "stackbit_model_type": "page",
+                "title": "Nature Mockup Magazine",
+                "subtitle": "Editorial Design",
+                "date": "2020-05-10",
+                "thumb_image": "images/work-book-1-thumb.jpg",
+                "thumb_image_alt": "Nature Mockup Magazine preview",
+                "sections": [
+                    {
+                        "type": "image_section",
+                        "image": "images/work-book-1.jpg",
+                        "image_alt": "Nature Mockup Magazine 1",
+                        "caption": "This is the caption of the image",
+                        "width": "wide",
+                        "stackbit_model_type": "object"
+                    },
+                    {
+                        "type": "text_section",
+                        "content": "Vis accumsan feugiat adipiscing nisl amet adipiscing accumsan blandit accumsan sapien blandit ac amet faucibus aliquet placerat commodo. Interdum ante aliquet commodo accumsan vis phasellus adipiscing. Ornare a in lacinia. Vestibulum accumsan ac metus massa tempor. Accumsan in lacinia ornare massa amet. Ac interdum ac non praesent. Cubilia lacinia interdum massa faucibus blandit nullam. Accumsan phasellus nunc integer. Accumsan euismod nunc adipiscing lacinia erat ut sit. Arcu amet. Id massa aliquet arcu accumsan lorem amet accumsan.",
+                        "stackbit_model_type": "object"
+                    },
+                    {
+                        "type": "image_section",
+                        "image": "images/work-book-2.jpg",
+                        "image_alt": "Nature Mockup Magazine 2",
+                        "width": "wide",
+                        "stackbit_model_type": "object"
+                    },
+                    {
+                        "type": "text_section",
+                        "content": "Amet nibh adipiscing adipiscing. Commodo ante vis placerat interdum massa massa primis. Tempus condimentum tempus non ac varius cubilia adipiscing placerat lorem turpis at. Aliquet lorem porttitor interdum. Amet lacus. Aliquam lobortis faucibus blandit ac phasellus.",
+                        "stackbit_model_type": "object"
+                    },
+                    {
+                        "type": "image_section",
+                        "image": "images/work-book-3.jpg",
+                        "image_alt": "Nature Mockup Magazine 3",
+                        "width": "wide",
+                        "stackbit_model_type": "object"
+                    },
+                    {
+                        "type": "text_section",
+                        "content": "Vis accumsan feugiat adipiscing nisl amet adipiscing accumsan blandit accumsan sapien blandit ac amet faucibus aliquet placerat commodo. Interdum ante aliquet commodo accumsan vis phasellus adipiscing. Ornare a in lacinia. Vestibulum accumsan ac metus massa tempor. Accumsan in lacinia ornare massa amet. Ac interdum ac non praesent. Cubilia lacinia interdum massa faucibus blandit nullam. Accumsan phasellus nunc integer. Accumsan euismod nunc adipiscing lacinia erat ut sit. Arcu amet. Id massa aliquet arcu accumsan lorem amet accumsan.",
+                        "stackbit_model_type": "object"
+                    }
+                ],
+                "seo": {
+                    "type": "stackbit_page_meta",
+                    "title": "Nature Mockup Magazine",
+                    "description": "This is the sample project description",
+                    "extra": [
+                        {
+                            "name": "og:type",
+                            "value": "website",
+                            "keyName": "property"
+                        },
+                        {
+                            "name": "og:title",
+                            "value": "Nature Mockup Magazine",
+                            "keyName": "property"
+                        },
+                        {
+                            "name": "og:description",
+                            "value": "This is the sample project description",
+                            "keyName": "property"
+                        },
+                        {
+                            "name": "og:image",
+                            "value": "images/work-book-1.jpg",
+                            "keyName": "property",
+                            "relativeUrl": true
+                        },
+                        {
+                            "name": "twitter:card",
+                            "value": "summary_large_image"
+                        },
+                        {
+                            "name": "twitter:title",
+                            "value": "Nature Mockup Magazine"
+                        },
+                        {
+                            "name": "twitter:description",
+                            "value": "This is the sample project description"
+                        },
+                        {
+                            "name": "twitter:image",
+                            "value": "images/work-book-1.jpg",
+                            "relativeUrl": true
+                        }
+                    ],
+                    "stackbit_model_type": "object"
+                },
+                "layout": "project",
+                "stackbit_url_path": "/portfolio/project-4"
+            }
+        },
+        {
+            "modelType": "page",
+            "modelName": "project",
+            "relPath": "portfolio/project-5.md",
+            "data": {
+                "stackbit_model_type": "page",
+                "title": "Nature Magazine",
+                "subtitle": "Editorial Design",
+                "date": "2021-01-10",
+                "thumb_image": "images/work-magazine-1-thumb.jpg",
+                "thumb_image_alt": "Nature Magazine preview",
+                "sections": [
+                    {
+                        "type": "image_section",
+                        "image": "images/work-magazine-1.jpg",
+                        "image_alt": "Nature Magazine 1",
+                        "caption": "This is the caption of the image",
+                        "width": "wide",
+                        "stackbit_model_type": "object"
+                    },
+                    {
+                        "type": "text_section",
+                        "content": "Vis accumsan feugiat adipiscing nisl amet adipiscing accumsan blandit accumsan sapien blandit ac amet faucibus aliquet placerat commodo. Interdum ante aliquet commodo accumsan vis phasellus adipiscing. Ornare a in lacinia. Vestibulum accumsan ac metus massa tempor. Accumsan in lacinia ornare massa amet. Ac interdum ac non praesent. Cubilia lacinia interdum massa faucibus blandit nullam. Accumsan phasellus nunc integer. Accumsan euismod nunc adipiscing lacinia erat ut sit. Arcu amet. Id massa aliquet arcu accumsan lorem amet accumsan.",
+                        "stackbit_model_type": "object"
+                    },
+                    {
+                        "type": "image_section",
+                        "image": "images/work-magazine-2.jpg",
+                        "image_alt": "Nature Magazine 2",
+                        "width": "wide",
+                        "stackbit_model_type": "object"
+                    },
+                    {
+                        "type": "text_section",
+                        "content": "Amet nibh adipiscing adipiscing. Commodo ante vis placerat interdum massa massa primis. Tempus condimentum tempus non ac varius cubilia adipiscing placerat lorem turpis at. Aliquet lorem porttitor interdum. Amet lacus. Aliquam lobortis faucibus blandit ac phasellus.",
+                        "stackbit_model_type": "object"
+                    },
+                    {
+                        "type": "image_section",
+                        "image": "images/work-magazine-3.jpg",
+                        "image_alt": "Nature Magazine 3",
+                        "width": "wide",
+                        "stackbit_model_type": "object"
+                    },
+                    {
+                        "type": "text_section",
+                        "content": "Vis accumsan feugiat adipiscing nisl amet adipiscing accumsan blandit accumsan sapien blandit ac amet faucibus aliquet placerat commodo. Interdum ante aliquet commodo accumsan vis phasellus adipiscing. Ornare a in lacinia. Vestibulum accumsan ac metus massa tempor. Accumsan in lacinia ornare massa amet. Ac interdum ac non praesent. Cubilia lacinia interdum massa faucibus blandit nullam. Accumsan phasellus nunc integer. Accumsan euismod nunc adipiscing lacinia erat ut sit. Arcu amet. Id massa aliquet arcu accumsan lorem amet accumsan.",
+                        "stackbit_model_type": "object"
+                    }
+                ],
+                "seo": {
+                    "type": "stackbit_page_meta",
+                    "title": "Nature Magazine",
+                    "description": "This is the sample project description",
+                    "extra": [
+                        {
+                            "name": "og:type",
+                            "value": "website",
+                            "keyName": "property"
+                        },
+                        {
+                            "name": "og:title",
+                            "value": "Nature Magazine",
+                            "keyName": "property"
+                        },
+                        {
+                            "name": "og:description",
+                            "value": "This is the sample project description",
+                            "keyName": "property"
+                        },
+                        {
+                            "name": "og:image",
+                            "value": "images/work-magazine-1.jpg",
+                            "keyName": "property",
+                            "relativeUrl": true
+                        },
+                        {
+                            "name": "twitter:card",
+                            "value": "summary_large_image"
+                        },
+                        {
+                            "name": "twitter:title",
+                            "value": "Nature Magazine"
+                        },
+                        {
+                            "name": "twitter:description",
+                            "value": "This is the sample project description"
+                        },
+                        {
+                            "name": "twitter:image",
+                            "value": "images/work-magazine-1.jpg",
+                            "relativeUrl": true
+                        }
+                    ],
+                    "stackbit_model_type": "object"
+                },
+                "layout": "project",
+                "stackbit_url_path": "/portfolio/project-5"
+            }
+        },
+        {
+            "modelType": "page",
+            "modelName": "project",
+            "relPath": "portfolio/project-6.md",
+            "data": {
+                "stackbit_model_type": "page",
+                "title": "Subtle",
+                "subtitle": "Brand Development",
+                "date": "2021-02-06",
+                "thumb_image": "images/work-photography-magazine-1-thumb.jpg",
+                "thumb_image_alt": "Subtle preview",
+                "sections": [
+                    {
+                        "type": "image_section",
+                        "image": "images/work-photography-magazine-1.jpg",
+                        "image_alt": "Subtle 1",
+                        "caption": "This is the caption of the image",
+                        "width": "wide",
+                        "stackbit_model_type": "object"
+                    },
+                    {
+                        "type": "text_section",
+                        "content": "Vis accumsan feugiat adipiscing nisl amet adipiscing accumsan blandit accumsan sapien blandit ac amet faucibus aliquet placerat commodo. Interdum ante aliquet commodo accumsan vis phasellus adipiscing. Ornare a in lacinia. Vestibulum accumsan ac metus massa tempor. Accumsan in lacinia ornare massa amet. Ac interdum ac non praesent. Cubilia lacinia interdum massa faucibus blandit nullam. Accumsan phasellus nunc integer. Accumsan euismod nunc adipiscing lacinia erat ut sit. Arcu amet. Id massa aliquet arcu accumsan lorem amet accumsan.",
+                        "stackbit_model_type": "object"
+                    },
+                    {
+                        "type": "image_section",
+                        "image": "images/work-photography-magazine-2.jpg",
+                        "image_alt": "Subtle 2",
+                        "width": "wide",
+                        "stackbit_model_type": "object"
+                    },
+                    {
+                        "type": "text_section",
+                        "content": "Amet nibh adipiscing adipiscing. Commodo ante vis placerat interdum massa massa primis. Tempus condimentum tempus non ac varius cubilia adipiscing placerat lorem turpis at. Aliquet lorem porttitor interdum. Amet lacus. Aliquam lobortis faucibus blandit ac phasellus.",
+                        "stackbit_model_type": "object"
+                    },
+                    {
+                        "type": "image_section",
+                        "image": "images/work-photography-magazine-3.jpg",
+                        "image_alt": "Subtle 3",
+                        "width": "wide",
+                        "stackbit_model_type": "object"
+                    },
+                    {
+                        "type": "text_section",
+                        "content": "Vis accumsan feugiat adipiscing nisl amet adipiscing accumsan blandit accumsan sapien blandit ac amet faucibus aliquet placerat commodo. Interdum ante aliquet commodo accumsan vis phasellus adipiscing. Ornare a in lacinia. Vestibulum accumsan ac metus massa tempor. Accumsan in lacinia ornare massa amet. Ac interdum ac non praesent. Cubilia lacinia interdum massa faucibus blandit nullam. Accumsan phasellus nunc integer. Accumsan euismod nunc adipiscing lacinia erat ut sit. Arcu amet. Id massa aliquet arcu accumsan lorem amet accumsan.",
+                        "stackbit_model_type": "object"
+                    }
+                ],
+                "seo": {
+                    "type": "stackbit_page_meta",
+                    "title": "Subtle",
+                    "description": "This is the sample project description",
+                    "extra": [
+                        {
+                            "name": "og:type",
+                            "value": "website",
+                            "keyName": "property"
+                        },
+                        {
+                            "name": "og:title",
+                            "value": "Subtle",
+                            "keyName": "property"
+                        },
+                        {
+                            "name": "og:description",
+                            "value": "This is the sample project description",
+                            "keyName": "property"
+                        },
+                        {
+                            "name": "og:image",
+                            "value": "images/work-photography-magazine-1.jpg",
+                            "keyName": "property",
+                            "relativeUrl": true
+                        },
+                        {
+                            "name": "twitter:card",
+                            "value": "summary_large_image"
+                        },
+                        {
+                            "name": "twitter:title",
+                            "value": "Subtle"
+                        },
+                        {
+                            "name": "twitter:description",
+                            "value": "This is the sample project description"
+                        },
+                        {
+                            "name": "twitter:image",
+                            "value": "images/work-photography-magazine-1.jpg",
+                            "relativeUrl": true
+                        }
+                    ],
+                    "stackbit_model_type": "object"
+                },
+                "layout": "project",
+                "stackbit_url_path": "/portfolio/project-6"
+            }
+        },
+        {
+            "modelType": "page",
+            "modelName": "page",
+            "relPath": "style-guide.md",
+            "data": {
+                "stackbit_model_type": "page",
+                "title": "Style Guide",
+                "subtitle": "The style guide provides you with a blueprint of default post and page styles. The style guide is also a great reference for suggested typographic treatment and styles for your content.",
+                "seo": {
+                    "type": "stackbit_page_meta",
+                    "title": "Theme Style Guide",
+                    "description": "A reference for suggested typographic treatment and styles for your content",
+                    "extra": [
+                        {
+                            "name": "og:type",
+                            "value": "website",
+                            "keyName": "property"
+                        },
+                        {
+                            "name": "og:title",
+                            "value": "Theme Style Guide",
+                            "keyName": "property"
+                        },
+                        {
+                            "name": "og:description",
+                            "value": "A reference for suggested typographic treatment and styles for your content",
+                            "keyName": "property"
+                        },
+                        {
+                            "name": "twitter:card",
+                            "value": "summary"
+                        },
+                        {
+                            "name": "twitter:title",
+                            "value": "Theme Style Guide"
+                        },
+                        {
+                            "name": "twitter:description",
+                            "value": "A reference for suggested typographic treatment and styles for your content"
+                        }
+                    ],
+                    "stackbit_model_type": "object"
+                },
+                "layout": "page",
+                "stackbit_url_path": "/style-guide",
+                "content": "\nThis is a paragraph. Malesuada bibendum arcu vitae elementum curabitur vitae nunc sed. Fringilla urna porttitor rhoncus dolor purus. Consectetur purus ut faucibus pulvinar. Nullam non nisi est sit. Tellus in metus vulputate eu scelerisque felis. Nunc congue nisi vitae suscipit tellus mauris. Phasellus egestas tellus rutrum tellus pellentesque eu tincidunt. Fermentum iaculis eu non diam phasellus vestibulum. Faucibus turpis in eu mi bibendum neque egestas congue.\n\n# This is an H1\n\nQuisque facilisis erat a dui. Nam malesuada ornare dolor. Cras gravida, this is marked text ornare, erat elit consectetuer erat, id egestas pede nibh eget odio. Proin tincidunt, velit vel porta elementum, magna diam molestie sapien, non aliquet massa pede eu diam. Aliquam iaculis. Fusce et ipsum et nulla tristique facilisis.\n\n## This is an H2\n\nLorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim. Suspendisse id velit vitae ligula volutpat condimentum. Aliquam erat volutpat. Sed quis velit. Nulla facilisi. Nulla libero.\n\n### This is an H3\n\nLorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim. Suspendisse id velit vitae ligula volutpat condimentum. Aliquam erat volutpat. Sed quis velit. Nulla facilisi. Nulla libero.\n\n#### This is an H4\n\nQuisque facilisis erat a dui. Nam malesuada ornare dolor. Cras gravida, diam sit amet rhoncus ornare, erat elit consectetuer erat, id egestas pede nibh eget odio. Proin tincidunt, velit vel porta elementum, magna diam molestie sapien, non aliquet massa pede eu diam. Aliquam iaculis.\n\n## Quoting\n\nLorem ipsum dolor sit amet, consectetuer adipiscing elit.\n\n>Creativity is allowing yourself to make mistakes. Design is knowing which ones to keep.\n>\n>&mdash; Scott Adams\n\nMorbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim. Suspendisse id velit vitae ligula volutpat condimentum. Aliquam erat volutpat. Sed quis velit. Nulla facilisi. Nulla libero.\n\n## Unordered and Ordered Lists\n\n+ Donec non tortor in arcu mollis feugiat\n+ Lorem ipsum dolor sit amet, consectetuer adipiscing elit\n+ Donec id eros eget quam aliquam gravida\n+ Vivamus convallis urna id felis\n+ Nulla porta tempus sapien\n\n***\n\n1. Donec non tortor in arcu mollis feugiat\n2. Lorem ipsum dolor sit amet, consectetuer adipiscing elit\n3. Donec id eros eget quam aliquam gravida\n4. Vivamus convallis urna id felis\n5. Nulla porta tempus sapien\n\n## Code Blocks\n\nBlocks of code are either fenced by lines with three back-ticks, or are indented with four spaces.\n\n```\nlet sequence = [1, 1, 2, 3, 5, 8, 13];\nfor (let i = 0; i < sequence.length; i++) {\n  console.log(sequence[i]);\n}\n```\n\n## Inline Elements\n\nEmphasis, aka italics, with *asterisks* or _underscores_.\n\nStrong emphasis, aka bold, with **asterisks** or __underscores__.\n\nCombined emphasis with **_asterisks and underscores_**.\n\nStrikethrough uses two tildes. ~~Scratch this.~~\n\nInline `code with back-ticks around` it.\n\nThis is <mark>marked or highlighted</mark> text.\n\nThis is [an example](http://example.com) link.\n\n## Tables\n\n<table>\n    <caption>Table with thead, tfoot, and tbody</caption>\n  <thead>\n    <tr>\n      <th>Header content 1</th>\n      <th>Header content 2</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>Body content 1</td>\n      <td>Body content 2</td>\n    </tr>\n  </tbody>\n  <tfoot>\n    <tr>\n      <td>Footer content 1</td>\n      <td>Footer content 2</td>\n    </tr>\n  </tfoot>\n</table>\n"
+            }
+        },
+        {
+            "modelType": "page",
+            "modelName": "advanced",
+            "relPath": "thank-you.md",
+            "data": {
+                "stackbit_model_type": "page",
+                "title": "Thank You!",
+                "hide_title": false,
+                "sections": [
+                    {
+                        "type": "hero_section",
+                        "content": "Thank you for testing this template. We hope you like it. Have a great day!",
+                        "actions": [
+                            {
+                                "type": "action",
+                                "label": "Back to homepage",
+                                "url": "/",
+                                "style": "button",
+                                "stackbit_model_type": "object"
+                            }
+                        ],
+                        "stackbit_model_type": "object"
+                    }
+                ],
+                "layout": "advanced",
+                "stackbit_url_path": "/thank-you"
+            }
+        }
+    ]
+}
